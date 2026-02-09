@@ -1,0 +1,390 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #210a2f;
+    color: #e6f1ff;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* CSS-only yıldız efekti */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        /* Yıldızlar */
+        radial-gradient(1.5px 1.5px at 5% 10%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 15% 25%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(2px 2px at 25% 40%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 35% 15%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 45% 60%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(2px 2px at 55% 30%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 65% 75%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 75% 45%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(2px 2px at 85% 20%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1px 1px at 95% 55%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 10% 85%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(2px 2px at 20% 65%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1px 1px at 30% 95%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 40% 35%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(2px 2px at 50% 80%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 60% 50%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 90%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(2px 2px at 80% 70%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1px 1px at 90% 25%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+
+        /* Mevcut gradient'leriniz */
+        radial-gradient(circle at 10% 20%, rgba(28, 58, 115, 0.2) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(28, 58, 115, 0.2) 0%, transparent 20%);
+
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.7;
+
+    /* Parlama animasyonu */
+    animation: starPulse 8s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Header Stili */
+header {
+    background: rgba(15, 16, 59, 0.95);
+    padding: 20px 40px;
+    border-bottom: 2px solid #4e225d;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #eee1f1, #dc87f8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 1px;
+}
+
+.logo i {
+    color: #b19cd9;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo:hover i {
+    transform: rotate(90deg);
+}
+
+/* Üst Çubuk (Navigation Bar) */
+.nav-bar {
+    background: rgba(15, 16, 59, 0.95);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e234d;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(220, 135, 248, 0.2);
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.nav-item:hover {
+    background: rgba(220, 135, 248, 0.4);
+    border-color: #dc87f8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 135, 248, 0.2);
+}
+
+.nav-item i {
+    font-size: 18px;
+    color: #b19cd9;
+}
+
+.nav-text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-input {
+    background: rgba(33, 10, 47, 0.8);
+    border: 1px solid #dc87f8;
+    color: #e6f1ff;
+    padding: 12px 20px 12px 45px;
+    border-radius: 25px;
+    width: 300px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    width: 350px;
+    box-shadow: 0 0 15px rgba(220, 135, 248, 0.4);
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b19cd9;
+    font-size: 18px;
+}
+
+/* Ana İçerik Alanı */
+.main-content {
+    padding: 30px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, #eee1f1, #7582f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    border-bottom: 2px solid #3a1e4d;
+    padding-bottom: 15px;
+}
+
+/* Explore Bölümü - Gönderiler */
+.posts-section {
+    display: none;
+    background: rgba(41, 15, 59, 0.7);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #3a1e4d;
+}
+
+.posts-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.post {
+    background: rgba(52, 20, 74, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #dc87f8;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #b19cd9, #dc87f8);
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #210a2f;
+}
+
+.user-info h4 {
+    color: #b19cd9;
+    margin-bottom: 5px;
+}
+
+.post-time {
+    color: #a78cc0;
+    font-size: 14px;
+}
+
+.post-content {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 20px;
+    color: #a78cc0;
+}
+
+.post-action {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.post-action:hover {
+    color: #dc87f8;
+}
+
+/* Search Bölümü - Hesap Arama */
+.search-section {
+    display: none;
+    background: rgba(41, 15, 59, 0.7);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid #3a1e4d;
+}
+
+.search-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.search-results {
+    margin-top: 20px;
+}
+
+.account-card {
+    display: flex;
+    align-items: center;
+    background: rgba(52, 20, 74, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.account-card:hover {
+    transform: translateX(5px);
+    border-left: 4px solid #dc87f8;
+}
+
+.account-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #4182d7, #a94de6);
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: #210a2f;
+}
+
+.account-info h4 {
+    color: #b19cd9;
+    margin-bottom: 8px;
+}
+
+.account-info p {
+    color: #a78cc0;
+    font-size: 14px;
+}
+
+.follow-btn {
+    background: linear-gradient(45deg, #4182d7, #a94de6);
+    color: #210a2f;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.follow-btn:hover {
+    background: linear-gradient(45deg, #a94de6, #4182d7);
+    transform: scale(1.05);
+    color: #e6f1ff;
+}
+
+/* Animasyon */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+    
+    .nav-bar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-left {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .search-input:focus {
+        width: 100%;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+}
