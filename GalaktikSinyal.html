@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="SinyalStyle.css">
+    <!-- Font Awesome Ekle -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="daily-signal-section">
+        <div class="signal-header">
+            <div class="signal-icon">
+                <i class="fas fa-satellite-dish"></i>
+            </div>
+            <div class="signal-title-container">
+                <h2 class="signal-title">Günlük Sinyal</h2>
+                <p class="signal-subtitle">Seni motive edecek günlük mesajlar ve alıntılar</p>
+            </div>
+            <div class="signal-date">
+                <span class="date-day">12</span>
+                <span class="date-month">OCT</span>
+            </div>
+        </div>
+
+        <div class="signal-content">
+            <div class="signal-message">
+                <i class="fas fa-quote-left quote-start"></i>
+                <p class="signal-text" id="dailyMessage">Uzayın derinliklerinde keşfedilmemiş galaksiler olduğu gibi,
+                    senin içinde de keşfedilmemiş potansiyeller var. Bugün, o potansiyellerden birini ortaya çıkar.</p>
+                <i class="fas fa-quote-right quote-end"></i>
+            </div>
+
+            <div class="signal-author">
+                <i class="fas fa-user-astronaut"></i>
+                <span>Cosmic Mentor</span>
+            </div>
+        </div>
+
+        <div class="signal-stats">
+            <div class="stat-item">
+                <i class="fas fa-heart"></i>
+                <span class="stat-value">248</span>
+                <span class="stat-label">Motive Edilen</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-bolt"></i>
+                <span class="stat-value">47</span>
+                <span class="stat-label">Enerji Seviyesi</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-fire"></i>
+                <span class="stat-value">5</span>
+                <span class="stat-label">Gün Üst Üste</span>
+            </div>
+        </div>
+
+        <div class="signal-actions">
+            <button class="signal-btn new-message-btn">
+                <i class="fas fa-sync-alt"></i>
+                Yeni Mesaj Al
+            </button>
+            <button class="signal-btn save-message-btn">
+                <i class="fas fa-bookmark"></i>
+                Kaydet
+            </button>
+            <button class="signal-btn share-message-btn">
+                <i class="fas fa-share-alt"></i>
+                Paylaş
+            </button>
+        </div>
+
+        <div class="signal-progress">
+            <div class="progress-label">
+                <span>Günlük Motivasyon Hedefin</span>
+                <span>75%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Yeni mesajlar dizisi
+        const dailyMessages = [
+            "Uzayın derinliklerinde keşfedilmemiş galaksiler olduğu gibi, senin içinde de keşfedilmemiş potansiyeller var. Bugün, o potansiyellerden birini ortaya çıkar.",
+            "Her yıldız bir zamanlar sadece bir toz bulutuydu. Sen de bugün küçük bir adım at, yarının dev bir yıldızı ol.",
+            "Evren genişliyor, sen de genişle. Konfor alanının dışına çık ve yeni deneyimlere yelken aç.",
+            "Kara delikler bile ışığı yutamaz. Sen de zorluklar karşısında parlamaya devam et.",
+            "Yıldızlar arası yolculuk küçük adımlarla başlar. Bugün atacağın küçük bir adım, seni yarının büyük başarısına götürebilir.",
+            "Uzay boşluğunda bile hayat var. Umutsuz görünen durumlarda bile fırsatlar saklıdır.",
+            "Gezegenler uyum içinde döner. Sen de iç huzurunu bul, evrenle uyumlan."
+        ];
+
+        const messageAuthors = [
+            "Cosmic Mentor",
+            "Stellar Guide",
+            "Galactic Philosopher",
+            "Space Sage",
+            "Universal Coach",
+            "Orion Oracle",
+            "Nebula Navigator"
+        ];
+
+        // DOM Elementleri
+        const dailyMessageElement = document.getElementById('dailyMessage');
+        const newMessageBtn = document.querySelector('.new-message-btn');
+        const saveMessageBtn = document.querySelector('.save-message-btn');
+        const shareMessageBtn = document.querySelector('.share-message-btn');
+        const dateDay = document.querySelector('.date-day');
+        const dateMonth = document.querySelector('.date-month');
+
+        // Tarih güncelleme
+        const today = new Date();
+        dateDay.textContent = today.getDate();
+        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        dateMonth.textContent = months[today.getMonth()];
+
+        // Yeni mesaj fonksiyonu
+        newMessageBtn.addEventListener('click', function () {
+            const randomIndex = Math.floor(Math.random() * dailyMessages.length);
+            dailyMessageElement.textContent = dailyMessages[randomIndex];
+
+            // Yazarı da güncelle
+            const authorElement = document.querySelector('.signal-author span');
+            authorElement.textContent = messageAuthors[randomIndex];
+
+            // Animasyon efekti
+            dailyMessageElement.style.opacity = '0';
+            setTimeout(() => {
+                dailyMessageElement.style.opacity = '1';
+                dailyMessageElement.style.transition = 'opacity 0.5s ease';
+            }, 100);
+
+            // İstatistikleri artır
+            const statValue = document.querySelector('.stat-item:nth-child(2) .stat-value');
+            let currentValue = parseInt(statValue.textContent);
+            statValue.textContent = Math.min(currentValue + 5, 100);
+        });
+
+        // Mesajı kaydetme
+        saveMessageBtn.addEventListener('click', function () {
+            const message = dailyMessageElement.textContent;
+            localStorage.setItem('savedMessage', message);
+
+            // Geri bildirim
+            saveMessageBtn.innerHTML = '<i class="fas fa-check"></i> Kaydedildi';
+            setTimeout(() => {
+                saveMessageBtn.innerHTML = '<i class="fas fa-bookmark"></i> Kaydet';
+            }, 2000);
+        });
+
+        // Mesajı paylaşma
+        shareMessageBtn.addEventListener('click', function () {
+            const message = dailyMessageElement.textContent;
+            const shareText = `⭐ Günlük Motivasyon Sinyali: ${message} #Elftatur #GalaktikAğ`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Günlük Sinyal',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: Kopyala
+                navigator.clipboard.writeText(shareText);
+                shareMessageBtn.innerHTML = '<i class="fas fa-check"></i> Kopyalandı';
+                setTimeout(() => {
+                    shareMessageBtn.innerHTML = '<i class="fas fa-share-alt"></i> Paylaş';
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+
+</html>

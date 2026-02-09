@@ -1,0 +1,381 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #210a2f;
+    color: #e6f1ff;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* CSS-only yıldız efekti */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        /* Yıldızlar */
+        radial-gradient(1.5px 1.5px at 5% 10%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 15% 25%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(2px 2px at 25% 40%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 35% 15%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 45% 60%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(2px 2px at 55% 30%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 65% 75%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 75% 45%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(2px 2px at 85% 20%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1px 1px at 95% 55%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 10% 85%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(2px 2px at 20% 65%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1px 1px at 30% 95%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 40% 35%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(2px 2px at 50% 80%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 60% 50%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 90%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(2px 2px at 80% 70%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1px 1px at 90% 25%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+
+        /* Mevcut gradient'leriniz */
+        radial-gradient(circle at 10% 20%, rgba(28, 58, 115, 0.2) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(28, 58, 115, 0.2) 0%, transparent 20%);
+
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.7;
+
+    /* Parlama animasyonu */
+    animation: starPulse 8s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Günlük Sinyal Bölümü */
+.daily-signal-section {
+    background: linear-gradient(145deg, rgba(52, 20, 74, 0.9), rgba(33, 10, 47, 0.95));
+    border-radius: 20px;
+    padding: 25px;
+    margin: 30px 0;
+    border: 1px solid rgba(220, 135, 248, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.daily-signal-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(220, 135, 248, 0.2);
+}
+
+.daily-signal-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(220, 135, 248, 0.1) 0%, transparent 70%);
+    z-index: 0;
+}
+
+/* Signal Header */
+.signal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.signal-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #a94de6, #4182d7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    box-shadow: 0 5px 15px rgba(169, 77, 230, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 5px 15px rgba(169, 77, 230, 0.3); }
+    50% { box-shadow: 0 5px 20px rgba(169, 77, 230, 0.5); }
+    100% { box-shadow: 0 5px 15px rgba(169, 77, 230, 0.3); }
+}
+
+.signal-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.signal-title-container {
+    flex-grow: 1;
+}
+
+.signal-title {
+    font-size: 28px;
+    background: linear-gradient(45deg, #eee1f1, #dc87f8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 5px;
+}
+
+.signal-subtitle {
+    color: #b19cd9;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+.signal-date {
+    background: rgba(220, 135, 248, 0.1);
+    border: 1px solid rgba(220, 135, 248, 0.3);
+    border-radius: 10px;
+    padding: 10px 15px;
+    text-align: center;
+    min-width: 70px;
+}
+
+.date-day {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #dc87f8;
+}
+
+.date-month {
+    display: block;
+    font-size: 14px;
+    color: #b19cd9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Signal Content */
+.signal-content {
+    background: rgba(41, 15, 59, 0.6);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(220, 135, 248, 0.2);
+}
+
+.signal-message {
+    position: relative;
+    padding: 0 20px;
+}
+
+.quote-start, .quote-end {
+    position: absolute;
+    color: rgba(220, 135, 248, 0.3);
+    font-size: 40px;
+}
+
+.quote-start {
+    top: -15px;
+    left: 0;
+}
+
+.quote-end {
+    bottom: -20px;
+    right: 0;
+}
+
+.signal-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #e6f1ff;
+    text-align: center;
+    font-style: italic;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.signal-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #b19cd9;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.signal-author i {
+    color: #dc87f8;
+}
+
+/* Signal Stats */
+.signal-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-item i {
+    font-size: 24px;
+    color: #dc87f8;
+    background: rgba(220, 135, 248, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-value {
+    font-size: 22px;
+    font-weight: bold;
+    color: #eee1f1;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #a78cc0;
+    text-align: center;
+}
+
+/* Signal Actions */
+.signal-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.signal-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.new-message-btn {
+    background: linear-gradient(45deg, #4182d7, #a94de6);
+    color: #210a2f;
+}
+
+.new-message-btn:hover {
+    background: linear-gradient(45deg, #a94de6, #4182d7);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(169, 77, 230, 0.4);
+}
+
+.save-message-btn {
+    background: rgba(220, 135, 248, 0.1);
+    color: #dc87f8;
+    border: 1px solid rgba(220, 135, 248, 0.3);
+}
+
+.save-message-btn:hover {
+    background: rgba(220, 135, 248, 0.2);
+    transform: translateY(-2px);
+}
+
+.share-message-btn {
+    background: rgba(65, 130, 215, 0.1);
+    color: #4182d7;
+    border: 1px solid rgba(65, 130, 215, 0.3);
+}
+
+.share-message-btn:hover {
+    background: rgba(65, 130, 215, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Progress Bar */
+.signal-progress {
+    position: relative;
+    z-index: 1;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #b19cd9;
+}
+
+.progress-bar {
+    height: 8px;
+    background: rgba(41, 15, 59, 0.8);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(220, 135, 248, 0.2);
+}
+
+.progress-fill {
+    width: 75%;
+    height: 100%;
+    background: linear-gradient(90deg, #4182d7, #a94de6);
+    border-radius: 4px;
+    animation: progressAnimation 1.5s ease-out;
+}
+
+@keyframes progressAnimation {
+    from { width: 0; }
+    to { width: 75%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .signal-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .signal-icon {
+        margin-right: 0;
+    }
+    
+    .signal-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .signal-actions {
+        flex-direction: column;
+    }
+}

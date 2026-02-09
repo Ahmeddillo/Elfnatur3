@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elftatur - Evrensel Bir Yolculuk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Kısmı -->
+        <header>
+            <div class="logo">
+                <i class="fas fa-rocket"></i> Elfnatur
+            </div>
+
+
+            <div class="auth-buttons">
+                <button class="btn btn-login" id="loginBtn">Giriş Yap</button>
+                <button class="btn btn-register" id="registerBtn">Kayıt Ol</button>
+            </div>
+        </header>
+
+        <!-- Hero Bölümü -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-sup-title">GELECEĞİN ÖĞRENME DENEYİMİ</div>
+                <h1 class="hero-title">Evrensel Bir Yolculuk</h1>
+                <p class="hero-subtitle">
+                    <span class="hero-highlight">Elfnatur</span> ile profesyonel şekilde zaman yönetiminizi yapıp
+                    kişisel gelişim profilinizi oluşturabilirsiniz. Artık siz de Elftatur ile kendi uzayınızı yaratın.
+                </p>
+                <button class="btn-hero" id="startBtn">Hemen Başla</button>
+            </div>
+
+            <div class="hero-image">
+                <div class="floating-container">
+                    <div class="orbit">
+                        <div class="planet pulse"></div>
+                    </div>
+                    <div class="orbit orbit-2">
+                        <div class="planet"></div>
+                    </div>
+                    <div class="central-planet">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- İstatistikler Bölümü -->
+        <section class="stats">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">AKTİF GEZGİN</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">TAMAMLANAN GÖREV</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">EĞİTİM İÇERİĞİ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">MUTLULUK ORANI</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galaktik Özellikler Bölümü -->
+        <section class="features">
+            <div class="section-header">
+                <h2>Galaktik Özellikler</h2>
+                <p class="section-subtitle">Sıradan bir planlayıcıdan fazlası. Hayatınızın her alanını yönetmeniz için
+                    tasarlandı.</p>
+            </div>
+
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">Zaman Bükücü</h3>
+                    <p class="feature-desc">Yapay zeka ile zamanı yönet, verimliliğini ışık hızına çıkar.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h3 class="feature-title">Yörünge Planlayıcı</h3>
+                    <p class="feature-desc">Hedeflerini belirle, rotanı çiz ve asla kaybolma.</p>
+                </div>
+
+                <a href="GalaktikAg.html" class="feature-link">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3 class="feature-title">Galaktik Ağ</h3>
+                        <p class="feature-desc">Diğer gezginlerle bağlantı kur, deneyimlerini paylaş.</p>
+                    </div>
+                </a>
+
+                <a href="GalaktikSinyal.html" class="feature-link">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3 class="feature-title">Günlük Sinyal</h3>
+                        <p class="feature-desc">Seni motive edecek günlük mesajlar ve alıntılar.</p>
+                    </div>
+                </a>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3 class="feature-title">Keşif Modülü</h3>
+                    <p class="feature-desc">Bilim, sanat ve teknoloji evreninde yeni bilgiler keşfet.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="feature-title">Yıldız Akademisi</h3>
+                    <p class="feature-desc">Uzmanlardan alacağın eğitimlerle yeteneklerini geliştir.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Elfnatur. Tüm hakları saklıdır. Kişisel gelişim ve zaman yönetimi platformu.</p>
+        </footer>
+    </div>
+
+    <!-- Giriş Modalı -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" id="closeLogin">&times;</button>
+            </div>
+
+            <div class="login-container">
+                <!-- Sol taraf: Hoşgeldiniz mesajı -->
+                <div class="login-welcome">
+                    <h1 class="welcome-title">Elfnatur'a Hoşgeldiniz</h1>
+                    <p class="welcome-subtitle">Geleceğin Öğrenme Deneyimi</p>
+
+                    <div class="welcome-features">
+                        <div class="feature-item">
+                            <i class="fas fa-rocket"></i>
+                            <span>Kişisel Gelişim</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Zaman Yönetimi</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>İlerleme Takibi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sağ taraf: Giriş formu -->
+                <div class="login-form-section">
+                    <div class="form-header">
+                        <h2 class="form-title">Giriş Yap</h2>
+                        <p class="form-subtitle">Hesabınıza erişmek için bilgilerinizi girin</p>
+                    </div>
+
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label class="form-label" for="email">
+                                <i class="fas fa-envelope"></i> E-posta Adresi
+                            </label>
+                            <input type="email" id="email" class="form-input" placeholder="ornek@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="password">
+                                <i class="fas fa-lock"></i> Parola
+                            </label>
+                            <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+
+                            <div class="form-options">
+                                <label class="remember-me">
+                                    <input type="checkbox" id="remember">
+                                    <span>Beni Hatırla</span>
+                                </label>
+
+                                <a href="#" class="forgot-password" id="forgotPassword">Şifremi Unuttum?</a>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="form-submit">
+                            <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                        </button>
+                    </form>
+
+                    <div class="alternative-login">
+                        <div class="divider">
+                            <span>veya</span>
+                        </div>
+
+                        <div class="social-login">
+                            <button type="button" class="social-btn google-btn">
+                                <i class="fab fa-google"></i> Google ile devam et
+                            </button>
+                            <button type="button" class="social-btn github-btn">
+                                <i class="fab fa-github"></i> GitHub ile devam et
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="switch-form">
+                        <p>Hesabınız yok mu? <a href="#" id="goToRegister">Kayıt Ol</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Kayıt Modalı -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" id="closeRegister">&times;</button>
+            </div>
+
+            <div class="register-container">
+                <!-- Sol taraf: Hoşgeldiniz mesajı -->
+                <div class="register-welcome">
+                    <h1 class="welcome-title">Elfnatur'a Hoşgeldiniz</h1>
+                    <p class="welcome-subtitle">Geleceğin Öğrenme Deneyimi</p>
+
+                    <div class="register-features">
+                        <div class="feature-item">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Hesap Oluştur</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-gem"></i>
+                            <span>Premium Özellikler</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-rocket"></i>
+                            <span>Hemen Başla</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sağ taraf: Kayıt formu -->
+                <div class="register-form-section">
+                    <div class="form-header">
+                        <h2 class="form-title">Kayıt Ol</h2>
+                        <p class="form-subtitle">Yolculuğunuza başlamak için hesap oluşturun</p>
+                    </div>
+
+                    <form id="registerForm">
+                        <!-- İsim ve Soyisim -->
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label class="form-label" for="firstName">
+                                    <i class="fas fa-user"></i> İsim
+                                </label>
+                                <input type="text" id="firstName" class="form-input" placeholder="Adınız" required>
+                            </div>
+
+                            <div class="form-group half">
+                                <label class="form-label" for="lastName">
+                                    <i class="fas fa-user"></i> Soyisim
+                                </label>
+                                <input type="text" id="lastName" class="form-input" placeholder="Soyadınız" required>
+                            </div>
+                        </div>
+
+                        <!-- E-posta ve Kullanıcı Adı -->
+                        <div class="form-group">
+                            <label class="form-label" for="regEmail">
+                                <i class="fas fa-envelope"></i> E-posta Adresi
+                            </label>
+                            <input type="email" id="regEmail" class="form-input" placeholder="ornek@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="username">
+                                <i class="fas fa-at"></i> Kullanıcı Adı
+                            </label>
+                            <input type="text" id="username" class="form-input" placeholder="kullanici_adi" required>
+                        </div>
+
+                        <!-- Şifreler -->
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label class="form-label" for="regPassword">
+                                    <i class="fas fa-lock"></i> Parola
+                                </label>
+                                <input type="password" id="regPassword" class="form-input" placeholder="••••••••"
+                                    required>
+                            </div>
+
+                            <div class="form-group half">
+                                <label class="form-label" for="confirmPassword">
+                                    <i class="fas fa-lock"></i> Parola Onayı
+                                </label>
+                                <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••"
+                                    required>
+                            </div>
+                        </div>
+
+                        <!-- Promosyon Kodu -->
+                        <div class="form-group">
+                            <label class="form-label" for="promoCode">
+                                <i class="fas fa-tag"></i> Promosyon Kodu (İsteğe Bağlı)
+                            </label>
+                            <input type="text" id="promoCode" class="form-input" placeholder="Örn: ELF2024">
+                        </div>
+
+                        <hr class="form-divider">
+
+                        <!-- Üyelik Planları -->
+                        <div class="membership-plans">
+                            <h3 class="plans-title">Üyelik Planı Seçin</h3>
+
+                            <div class="plans-container">
+                                <!-- Ücretsiz Plan -->
+                                <div class="plan-card free-plan" id="freePlan">
+                                    <div class="plan-header">
+                                        <h4 class="plan-name">Ücretsiz</h4>
+                                        <p class="plan-desc">Temel özellikler ile başla</p>
+                                    </div>
+
+                                    <div class="plan-features">
+                                        <ul>
+                                            <li><i class="fas fa-check"></i> Temel özellikler</li>
+                                            <li><i class="fas fa-check"></i> Sınırlı kayıt</li>
+                                            <li><i class="fas fa-check"></i> Topluluk desteği</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="plan-price">
+                                        <span class="price-amount">0 ₺</span>
+                                        <span class="price-period">Her zaman ücretsiz</span>
+                                    </div>
+                                </div>
+
+                                <!-- Premium Plan -->
+                                <div class="plan-card premium-plan active" id="premiumPlan">
+                                    <div class="plan-header">
+                                        <div class="plan-badge">POPÜLER</div>
+                                        <h4 class="plan-name">Premium</h4>
+                                        <p class="plan-desc">Tam Erişim</p>
+                                    </div>
+
+                                    <div class="plan-features">
+                                        <ul>
+                                            <li><i class="fas fa-check"></i> Tüm premium özellikler</li>
+                                            <li><i class="fas fa-check"></i> Sınırsız kayıt</li>
+                                            <li><i class="fas fa-check"></i> Öncelikli destek</li>
+                                            <li><i class="fas fa-check"></i> Özel içerikler</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="plan-price">
+                                        <div class="price-original">
+                                            <span class="original-amount">499 ₺</span>
+                                            <span class="original-period">aylık</span>
+                                        </div>
+
+                                        <div class="price-discount">
+                                            <span class="discount-amount">199 ₺</span>
+                                            <span class="discount-period">AYLIK ABONELİK</span>
+                                            <span class="discount-badge">İNDİRİMLİ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kayıt Butonu -->
+                        <button type="submit" class="form-submit register-submit">
+                            <i class="fas fa-user-plus"></i> Ücretsiz Kayıt Ol
+                        </button>
+                    </form>
+
+                    <div class="switch-form">
+                        <p>Zaten hesabınız var mı? <a href="#" id="goToLogin">Giriş Yap</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+<!-- index.html dosyasına bu JavaScript kodunu ekleyebilirsiniz -->
+<!-- <script>
+    // Basit bir parola koruması
+    const CORRECT_PASSWORD = "elfnatur123"; // Bu parolayı değiştirin
+    const pagePassword = prompt("Sayfaya erişim için parola girin:");
+
+    if (pagePassword !== CORRECT_PASSWORD) {
+        document.body.innerHTML = "<h1 style='text-align:center;margin-top:100px;color:red;'>Erişim Reddedildi</h1>";
+        document.body.style.backgroundColor = "#0a192f";
+    }
+</script> -->
+
+</html>

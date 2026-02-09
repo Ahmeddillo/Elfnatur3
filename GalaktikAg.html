@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elftatur - Galaktik Ağ</title>
+    <link rel="stylesheet" href="AgStyle.css">
+    <!-- Font Awesome için -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-rocket"></i>
+            <span>Elftatur - Galaktik Ağ</span>
+        </div>
+    </header>
+
+    <!-- Üst Navigasyon Çubuğu -->
+    <nav class="nav-bar">
+        <div class="nav-left">
+            <!-- Explore Butonu -->
+            <div class="nav-item" id="exploreBtn">
+                <i class="fas fa-compass"></i>
+                <span class="nav-text">Explore</span>
+            </div>
+
+            <!-- Search Butonu -->
+            <div class="nav-item" id="searchBtn">
+                <i class="fas fa-search"></i>
+                <span class="nav-text">Search</span>
+            </div>
+        </div>
+
+        <!-- Arama Çubuğu -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" id="accountSearch" placeholder="Bir hesap ara...">
+        </div>
+    </nav>
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+        <h1 class="content-title">Galaktik Ağ'a Hoş Geldiniz</h1>
+
+        <!-- Explore Bölümü - Gönderiler -->
+        <section class="posts-section" id="postsSection">
+            <h2><i class="fas fa-newspaper"></i> Son Gönderiler</h2>
+            
+            <div class="post">
+                <div class="post-header">
+                    <div class="avatar">S</div>
+                    <div class="user-info">
+                        <h4>SpaceExplorer42</h4>
+                        <p class="post-time">2 saat önce • Andromeda Galaksisi</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Bugün Nebula X-7'yi keşfettim! İnanılmaz bir renk şöleni. Yıldız tozları arasında gezinen mikroorganizmalar bile tespit ettim. Uzay gerçekten hayal ettiğimizden daha canlı!
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="far fa-heart"></i>
+                        <span>124</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-comment"></i>
+                        <span>23</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-share"></i>
+                        <span>Paylaş</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-header">
+                    <div class="avatar">C</div>
+                    <div class="user-info">
+                        <h4>CosmoTraveler</h4>
+                        <p class="post-time">1 gün önce • Orion Takımyıldızı</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Yeni warp sürücü teknolojimizi test ettik! Işık hızının 3 katına çıkabildik. Yakında daha uzak galaksilere yolculuk mümkün olacak. Heyecanla bekleyin!
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="far fa-heart"></i>
+                        <span>356</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-comment"></i>
+                        <span>47</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-share"></i>
+                        <span>Paylaş</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Bölümü - Hesap Arama -->
+        <section class="search-section" id="searchSection">
+            <h2><i class="fas fa-user-astronaut"></i> Hesap Arama</h2>
+            
+            <div class="search-results" id="searchResults">
+                <!-- Arama sonuçları buraya gelecek -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // DOM Elementleri
+        const exploreBtn = document.getElementById('exploreBtn');
+        const searchBtn = document.getElementById('searchBtn');
+        const accountSearch = document.getElementById('accountSearch');
+        const postsSection = document.getElementById('postsSection');
+        const searchSection = document.getElementById('searchSection');
+        const searchResults = document.getElementById('searchResults');
+
+        // Örnek hesaplar
+        const sampleAccounts = [
+            { name: "GalacticVoyager", username: "@voyager_alpha", bio: "Interstellar explorer • 42 planets visited" },
+            { name: "NebulaHunter", username: "@hunter_nebula", bio: "Photographing cosmic clouds • Space photographer" },
+            { name: "StellarEngineer", username: "@star_engineer", bio: "Building tomorrow's spaceships • CEO @SpaceTech" },
+            { name: "AlienLinguist", username: "@alien_talk", bio: "Decoding extraterrestrial languages • Xenolinguistics expert" },
+            { name: "QuantumPilot", username: "@quantum_flight", bio: "Folding space since 2077 • Quantum drive specialist" }
+        ];
+
+        // Explore butonu tıklama
+        exploreBtn.addEventListener('click', function() {
+            postsSection.classList.add('active');
+            searchSection.classList.remove('active');
+            
+            // Butonları vurgula
+            exploreBtn.style.background = "rgba(74, 74, 255, 0.4)";
+            exploreBtn.style.borderColor = "#4a4aff";
+            searchBtn.style.background = "rgba(74, 74, 255, 0.2)";
+            searchBtn.style.borderColor = "transparent";
+        });
+
+        // Search butonu tıklama
+        searchBtn.addEventListener('click', function() {
+            searchSection.classList.add('active');
+            postsSection.classList.remove('active');
+            
+            // Butonları vurgula
+            searchBtn.style.background = "rgba(74, 74, 255, 0.4)";
+            searchBtn.style.borderColor = "#4a4aff";
+            exploreBtn.style.background = "rgba(74, 74, 255, 0.2)";
+            exploreBtn.style.borderColor = "transparent";
+            
+            // Tüm hesapları göster
+            displayAccounts(sampleAccounts);
+        });
+
+        // Arama çubuğu için dinleyici
+        accountSearch.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            if (searchTerm.length > 0) {
+                const filteredAccounts = sampleAccounts.filter(account => 
+                    account.name.toLowerCase().includes(searchTerm) || 
+                    account.username.toLowerCase().includes(searchTerm) ||
+                    account.bio.toLowerCase().includes(searchTerm)
+                );
+                displayAccounts(filteredAccounts);
+            } else {
+                displayAccounts(sampleAccounts);
+            }
+        });
+
+        // Hesapları görüntüleme fonksiyonu
+        function displayAccounts(accounts) {
+            if (accounts.length === 0) {
+                searchResults.innerHTML = `
+                    <div style="text-align: center; padding: 30px; color: #8888cc;">
+                        <i class="fas fa-user-slash" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>Hiç hesap bulunamadı.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            searchResults.innerHTML = accounts.map((account, index) => `
+                <div class="account-card">
+                    <div class="account-avatar">${account.name.charAt(0)}</div>
+                    <div class="account-info">
+                        <h4>${account.name}</h4>
+                        <p>${account.username}</p>
+                        <p>${account.bio}</p>
+                    </div>
+                    <button class="follow-btn">Takip Et</button>
+                </div>
+            `).join('');
+        }
+
+        // Sayfa yüklendiğinde Explore bölümünü göster
+        window.onload = function() {
+            exploreBtn.click();
+        };
+    </script>
+</body>
+</html>

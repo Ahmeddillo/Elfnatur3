@@ -1,0 +1,1251 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #210a2f;
+    color: #e6f1ff;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* CSS-only yıldız efekti */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        /* Yıldızlar */
+        radial-gradient(1.5px 1.5px at 5% 10%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 15% 25%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(2px 2px at 25% 40%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 35% 15%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 45% 60%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(2px 2px at 55% 30%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 65% 75%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 75% 45%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(2px 2px at 85% 20%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1px 1px at 95% 55%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 10% 85%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(2px 2px at 20% 65%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1px 1px at 30% 95%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 40% 35%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(2px 2px at 50% 80%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 60% 50%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 90%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(2px 2px at 80% 70%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1px 1px at 90% 25%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        
+        /* Mevcut gradient'leriniz */
+        radial-gradient(circle at 10% 20%, rgba(28, 58, 115, 0.2) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(28, 58, 115, 0.2) 0%, transparent 20%);
+    
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.7;
+    
+    /* Parlama animasyonu */
+    animation: starPulse 8s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header ve Navigasyon */
+header {
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #eee1f1, #dc87f8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 1px;
+}
+
+.logo i {
+    margin-right: 8px;
+    color: #b19cd9; /* Açık mor */
+}
+
+.logo:hover i {
+    transform: rotate(90deg);
+}
+
+/* Fare çekildiğinde geri dönüş */
+.logo i {
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link { /* Silinmesi gerekebilir */
+    color: #ccd6f6;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 8px 0;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #64ffda;
+}
+
+
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #64ffda;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 15px;
+}
+
+.btn-login {
+    background: transparent;
+    color: #dc87f8;
+
+}
+
+.btn-login:hover {
+    background: rgba(9, 191, 100, 0.1);
+}
+
+.btn-register {
+    background: linear-gradient(45deg, #4182d7, #a94de6);
+    color: #0a192f;
+}
+
+.btn-register:hover {
+    background: #69079d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(100, 255, 218, 0.2);
+}
+
+/* Hero Bölümü */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 0;
+    min-height: calc(100vh - 120px);
+}
+
+.hero-sup-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #dc87f8;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    background: linear-gradient(45deg, #e6f1ff, #87e1f8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #8892b0;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.hero-highlight {
+    color: #dc87f8;
+    font-weight: 600;
+}
+
+.btn-hero {
+    background: #eae6eb;
+    color: #0a192f;
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 4px;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.2);
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(100, 255, 218, 0.3);
+    background: #d3c5dc;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.floating-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(166, 57, 225, 0.3);
+    animation: rotate 40s linear infinite;
+}
+
+.orbit-2 {
+    width: 200px;
+    height: 200px;
+    animation: rotate 30s linear infinite reverse;
+}
+
+.planet {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff64fa, #9e0899);
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
+}
+
+.central-planet {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #0a192f, #112240);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+    border: 2px solid #dc87f8;
+    z-index: 2;
+}
+
+.central-planet i {
+    font-size: 32px;
+    color: #dc87ff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+    margin-top: 40px;
+    color: #8892b0;
+    font-size: 14px;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 0;
+    }
+    
+    .hero-content {
+        margin-bottom: 60px;
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .floating-container {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .orbit {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .orbit-2 {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero-title {
+        font-size: 2.3rem;
+    }
+    
+    .floating-container {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .orbit {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .orbit-2 {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-buttons {
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .btn-hero {
+        padding: 12px 28px;
+        font-size: 16px;
+    }
+}
+
+/* Animasyonlar */
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+    }
+}
+
+/* İstatistikler Bölümü Stilleri */
+
+.stats {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    text-align: center;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 180px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-8px);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: #e0e0e0;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .stats {
+        padding: 40px 15px;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .stat-number {
+        font-size: 2.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+}
+
+/* Galaktik Özellikler Bölümü Stilleri */
+.features {
+    padding: 80px 20px;
+    background: #0f0f1a;
+    text-align: center;
+}
+
+.feature-link {
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    color: inherit; /* Varsayılan rengi devral */
+    display: block; /* Tam blok kaplaması için */
+}
+
+.feature-link:hover .feature-card {
+    /* Hover efekti ekleyebilirsiniz */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Kartın kendi stillerine alt çizgi olmaması için */
+.feature-card {
+    text-decoration: none !important;
+    /* diğer stiller */
+}
+
+.section-header {
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: rgba(26, 26, 46, 0.8);
+    border-radius: 15px;
+    padding: 30px 25px;
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    border-color: #00dbde;
+    box-shadow: 0 15px 30px rgba(0, 219, 222, 0.2);
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card:hover::before {
+    opacity: 1;
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, rgba(0, 219, 222, 0.1), rgba(252, 0, 255, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #00dbde;
+    border: 2px solid rgba(0, 219, 222, 0.3);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: rotate(15deg) scale(1.1);
+    border-color: #00dbde;
+    background: linear-gradient(135deg, rgba(0, 219, 222, 0.2), rgba(252, 0, 255, 0.2));
+    box-shadow: 0 0 20px rgba(0, 219, 222, 0.3);
+}
+
+.feature-title {
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.feature-desc {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+}
+
+/* galaktik özellikle için*/
+.feature-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.feature-link:hover .feature-card {
+    /* Hover efekti ekleyebilirsiniz */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .features {
+        padding: 60px 15px;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .features-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .feature-card {
+        padding: 25px 20px;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px) scale(1.02);
+    }
+}
+
+@media (max-width: 480px) {
+    .features-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-title {
+        font-size: 1.3rem;
+    }
+}
+
+
+/* Modal (Giriş/Kayıt Formu) - DÜZENLENDİ */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 25, 47, 0.98);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #112240;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 85vh;
+    padding: 40px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(220, 135, 248, 0.3);
+    animation: modalFadeIn 0.4s ease-out;
+    overflow-y: auto;
+    margin: auto;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.close-modal {
+    background: rgba(220, 135, 248, 0.1);
+    border: 1px solid rgba(220, 135, 248, 0.3);
+    color: #dc87f8;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.close-modal:hover {
+    color: #fff;
+    background: rgba(220, 135, 248, 0.3);
+    transform: rotate(90deg);
+}
+
+/* Login ve Register container'ları için */
+.login-container, .register-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    min-height: 500px;
+}
+
+/* Sol Taraf - Hoşgeldiniz Bölümü */
+.login-welcome, .register-welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 30px;
+    border-right: 1px solid rgba(220, 135, 248, 0.2);
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #dc87f8, #a94de6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+}
+
+.welcome-subtitle {
+    font-size: 1.1rem;
+    color: #8892b0;
+    margin-bottom: 40px;
+}
+
+.welcome-features, .register-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #ccd6f6;
+    font-size: 1rem;
+}
+
+.feature-item i {
+    width: 40px;
+    height: 40px;
+    background: rgba(220, 135, 248, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dc87f8;
+    font-size: 1.2rem;
+}
+
+/* Sağ Taraf - Form Bölümü */
+.login-form-section, .register-form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #dc87f8;
+    margin-bottom: 8px;
+}
+
+.form-subtitle {
+    color: #8892b0;
+    font-size: 0.95rem;
+}
+
+/* Form Elementleri */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #ccd6f6;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-label i {
+    color: #dc87f8;
+    width: 16px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid #233554;
+    background-color: rgba(10, 25, 47, 0.8);
+    color: #e6f1ff;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #dc87f8;
+    box-shadow: 0 0 0 3px rgba(220, 135, 248, 0.1);
+}
+
+/* Form Seçenekleri */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8892b0;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.remember-me input {
+    width: 18px;
+    height: 18px;
+    accent-color: #dc87f8;
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: #dc87f8;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: #a94de6;
+    text-decoration: underline;
+}
+
+/* Giriş Butonu */
+.form-submit {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(45deg, #dc87f8, #a94de6);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.form-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(220, 135, 248, 0.3);
+    background: linear-gradient(45deg, #a94de6, #8a3cc9);
+}
+
+/* Alternatif Giriş */
+.alternative-login {
+    margin: 30px 0;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #8892b0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #233554;
+}
+
+.divider span {
+    padding: 0 15px;
+    font-size: 0.9rem;
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-btn {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #233554;
+    background-color: rgba(10, 25, 47, 0.8);
+    color: #ccd6f6;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-btn:hover {
+    border-color: #dc87f8;
+    background-color: rgba(220, 135, 248, 0.05);
+    transform: translateY(-1px);
+}
+
+.google-btn i {
+    color: #ea4335;
+}
+
+.github-btn i {
+    color: #f0f6fc;
+}
+
+/* Kayıt Ol Linki */
+.switch-form {
+    text-align: center;
+    margin-top: 25px;
+    color: #8892b0;
+    font-size: 0.95rem;
+}
+
+.switch-form a {
+    color: #dc87f8;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.switch-form a:hover {
+    color: #a94de6;
+    text-decoration: underline;
+}
+
+/* Kayıt Formu için Ek Stiller */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group.half {
+    flex: 1;
+}
+
+.form-divider {
+    border: none;
+    height: 1px;
+    background: rgba(220, 135, 248, 0.2);
+    margin: 30px 0;
+}
+
+/* Üyelik Planları */
+.membership-plans {
+    margin: 30px 0;
+}
+
+.plans-title {
+    color: #dc87f8;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.plans-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.plan-card {
+    flex: 1;
+    border: 1px solid #233554;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: rgba(10, 25, 47, 0.6);
+}
+
+.plan-card:hover {
+    border-color: #dc87f8;
+    transform: translateY(-5px);
+}
+
+.plan-card.active {
+    border-color: #a94de6;
+    background: rgba(169, 77, 230, 0.1);
+}
+
+.plan-header {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.plan-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #a94de6, #8a3cc9);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.plan-name {
+    font-size: 1.5rem;
+    color: #dc87f8;
+    margin-bottom: 5px;
+}
+
+.plan-desc {
+    color: #8892b0;
+    font-size: 0.9rem;
+}
+
+.plan-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.plan-features li {
+    color: #ccd6f6;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-features i {
+    color: #dc87f8;
+    font-size: 0.8rem;
+}
+
+.plan-price {
+    text-align: center;
+}
+
+.price-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #dc87f8;
+    display: block;
+}
+
+.price-period {
+    color: #8892b0;
+    font-size: 0.9rem;
+}
+
+/* Premium Plan Fiyat */
+.price-original {
+    text-decoration: line-through;
+    color: #8892b0;
+    margin-bottom: 10px;
+}
+
+.original-amount {
+    font-size: 1.2rem;
+}
+
+.original-period {
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
+.price-discount {
+    margin-top: 10px;
+}
+
+.discount-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #a94de6;
+    display: block;
+}
+
+.discount-period {
+    color: #a94de6;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+}
+
+.discount-badge {
+    display: inline-block;
+    background: rgba(169, 77, 230, 0.2);
+    color: #a94de6;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+/* Kayıt Butonu Özel */
+.register-submit {
+    background: linear-gradient(45deg, #a94de6, #8a3cc9) !important;
+}
+
+.register-submit:hover {
+    background: linear-gradient(45deg, #8a3cc9, #6a2ca8) !important;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 992px) {
+    .modal-content {
+        max-height: 95vh;
+        padding: 30px 25px;
+    }
+    
+    .login-container, .register-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        min-height: auto;
+    }
+    
+    .login-welcome, .register-welcome {
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(220, 135, 248, 0.2);
+        padding-bottom: 30px;
+        text-align: center;
+    }
+    
+    .plans-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 25px 20px;
+        width: 95%;
+    }
+    
+    .welcome-title {
+        font-size: 2rem;
+    }
+    
+    .form-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-content {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+    
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+    
+    .form-title {
+        font-size: 1.4rem;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .social-login {
+        flex-direction: column;
+    }
+    
+    .plan-card {
+        padding: 15px;
+    }
+}
