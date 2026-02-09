@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elfnatur - Akıllı Takvim</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- FullCalendar CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+    
+    <!-- Kendi CSS -->
+    <link rel="stylesheet" href="dashStyle.css">
+</head>
+<body>
+    <!-- Ana Konteyner -->
+    <div class="calendar-app">
+        <!-- Header -->
+        <header class="calendar-header">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Elfnatur Takvim</span>
+                </div>
+                <div class="live-clock" id="liveClock">
+                    <i class="fas fa-clock"></i>
+                    <span>00:00:00</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="calendar-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Çıkış
+                </button>
+            </div>
+        </header>
+
+        <!-- Ana İçerik -->
+        <div class="calendar-main">
+            <!-- Sidebar -->
+            <aside class="calendar-sidebar">
+                <div class="user-info">
+                    <div class="user-avatar">U</div>
+                    <div class="user-details">
+                        <h3>Uzay Elçisi</h3>
+                        <p>demo@elfnatur.com</p>
+                        <span class="user-badge">VIP</span>
+                    </div>
+                </div>
+
+                <!-- Hızlı Etkinlik Ekleme -->
+                <div class="quick-add">
+                    <h3><i class="fas fa-bolt"></i> Hızlı Ekle</h3>
+                    <input type="text" id="eventTitle" placeholder="Etkinlik Başlığı" class="form-input">
+                    <div class="form-row">
+                        <input type="date" id="eventDate" class="form-input" value="2026-02-09">
+                        <select id="eventCategory" class="form-select">
+                            <option value="#3b82f6">💼 İş</option>
+                            <option value="#10b981">👤 Kişisel</option>
+                            <option value="#8b5cf6">🤝 Toplantı</option>
+                            <option value="#ef4444">🏃 Sağlık</option>
+                            <option value="#f59e0b">📚 Eğitim</option>
+                            <option value="#ec4899">🎉 Sosyal</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <input type="time" id="eventStartTime" class="form-input" value="09:00">
+                        <input type="time" id="eventEndTime" class="form-input" value="10:00">
+                    </div>
+                    <textarea id="eventDescription" class="form-textarea" placeholder="Açıklama (opsiyonel)"></textarea>
+                    <button class="btn-primary" id="addQuickEvent">
+                        <i class="fas fa-plus-circle"></i>
+                        Etkinlik Ekle
+                    </button>
+                </div>
+
+                <!-- Kategoriler -->
+                <div class="categories">
+                    <h3><i class="fas fa-tags"></i> Kategoriler</h3>
+                    <div class="category-list">
+                        <div class="category-item" data-category="work">
+                            <div class="category-color" style="background-color: #3b82f6;"></div>
+                            <span class="category-name">İş</span>
+                            <span class="category-count" id="workCount">0</span>
+                        </div>
+                        <div class="category-item" data-category="personal">
+                            <div class="category-color" style="background-color: #10b981;"></div>
+                            <span class="category-name">Kişisel</span>
+                            <span class="category-count" id="personalCount">0</span>
+                        </div>
+                        <div class="category-item" data-category="meeting">
+                            <div class="category-color" style="background-color: #8b5cf6;"></div>
+                            <span class="category-name">Toplantı</span>
+                            <span class="category-count" id="meetingCount">0</span>
+                        </div>
+                        <div class="category-item" data-category="health">
+                            <div class="category-color" style="background-color: #ef4444;"></div>
+                            <span class="category-name">Sağlık</span>
+                            <span class="category-count" id="healthCount">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yaklaşan Etkinlikler -->
+                <div class="upcoming-events">
+                    <h3><i class="fas fa-clock"></i> Yaklaşanlar</h3>
+                    <div class="event-list" id="upcomingEvents">
+                        <div class="empty-state">
+                            <i class="far fa-calendar"></i>
+                            <p>Yaklaşan etkinlik yok</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Ana Takvim Alanı -->
+            <main class="calendar-content">
+                <!-- Takvim Araç Çubuğu -->
+                <div class="calendar-toolbar">
+                    <div class="toolbar-left">
+                        <button class="toolbar-btn" id="prevBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="toolbar-btn" id="todayBtn">
+                            <i class="fas fa-calendar-day"></i>
+                            Bugün
+                        </button>
+                        <button class="toolbar-btn" id="nextBtn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <h2 class="current-date" id="currentDate">Şubat 2026</h2>
+                    </div>
+                    
+                    <div class="toolbar-right">
+                        <div class="view-buttons">
+                            <button class="view-btn active" data-view="dayGridMonth">
+                                <i class="fas fa-calendar-alt"></i>
+                                Ay
+                            </button>
+                            <button class="view-btn" data-view="timeGridWeek">
+                                <i class="fas fa-calendar-week"></i>
+                                Hafta
+                            </button>
+                            <button class="view-btn" data-view="timeGridDay">
+                                <i class="fas fa-calendar-day"></i>
+                                Gün
+                            </button>
+                            <button class="view-btn" data-view="listWeek">
+                                <i class="fas fa-list"></i>
+                                Liste
+                            </button>
+                        </div>
+                        <button class="btn-primary" id="newEventBtn">
+                            <i class="fas fa-plus"></i>
+                            Yeni Etkinlik
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FullCalendar -->
+                <div id="calendar"></div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Etkinlik Modalı -->
+    <div class="modal" id="eventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Yeni Etkinlik</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm">
+                    <div class="form-group">
+                        <label>Başlık</label>
+                        <input type="text" id="modalEventTitle" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Başlangıç</label>
+                            <input type="datetime-local" id="modalEventStart" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Bitiş</label>
+                            <input type="datetime-local" id="modalEventEnd" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select id="modalEventCategory" class="form-select">
+                            <option value="#3b82f6">💼 İş</option>
+                            <option value="#10b981">👤 Kişisel</option>
+                            <option value="#8b5cf6">🤝 Toplantı</option>
+                            <option value="#ef4444">🏃 Sağlık</option>
+                            <option value="#f59e0b">📚 Eğitim</option>
+                            <option value="#ec4899">🎉 Sosyal</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Açıklama</label>
+                        <textarea id="modalEventDescription" class="form-textarea" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancelBtn">İptal</button>
+                        <button type="submit" class="btn-primary" id="saveEventBtn">Kaydet</button>
+                        <button type="button" class="btn-danger" id="deleteEventBtn" style="display: none;">Sil</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/tr.js'></script>
+    
+    <!-- Kendi JS -->
+    <script src="dashScript.js"></script>
+</body>
+</html>
