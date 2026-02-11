@@ -1,5 +1,3 @@
-/* style.css - FullCalendar Tema */
-
 /* 1. TEMEL AYARLAR */
 :root {
     --navy-blue: #0a192f;
@@ -26,23 +24,901 @@
 }
 
 body {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    color: var(--text-dark);
+    background-color: #210a2f;
+    color: #e6f1ff;
+    line-height: 1.6;
     min-height: 100vh;
-    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* 2. ANA KONTEYNER */
+/* CSS-only yıldız efekti */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(1.5px 1.5px at 5% 10%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 15% 25%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(2px 2px at 25% 40%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 35% 15%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 45% 60%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(2px 2px at 55% 30%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 65% 75%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 75% 45%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(2px 2px at 85% 20%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1px 1px at 95% 55%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 10% 85%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(2px 2px at 20% 65%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1px 1px at 30% 95%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 40% 35%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(2px 2px at 50% 80%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 60% 50%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 90%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+        radial-gradient(2px 2px at 80% 70%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+        radial-gradient(1px 1px at 90% 25%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+        radial-gradient(circle at 10% 20%, rgba(28, 58, 115, 0.2) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(28, 58, 115, 0.2) 0%, transparent 20%);
+    
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.7;
+    animation: starPulse 8s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+/* 2. DASHBOARD OVERVIEW */
+.dashboard-overview {
+    display: flex;
+    gap: 30px;
+    margin: 20px auto;
+    max-width: 1400px;
+    padding: 0 20px;
+}
+
+.time-schedule {
+    flex: 3;
+    display: flex;
+    gap: 30px;
+}
+
+/* 3. DİJİTAL SAAT */
+.live-clock {
+    background: linear-gradient(135deg, #1a237e, #311b92);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    min-width: 220px;
+    justify-content: center;
+}
+
+.live-clock i {
+    font-size: 24px;
+    color: #00e5ff;
+    animation: pulse 2s infinite;
+}
+
+.live-clock span {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.live-clock:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* ===== UZAY WIDGET - GENİŞLETİLMİŞ SOL VERSİYON ===== */
+/* ===== UZAY WIDGET - GALAKTİK TASARIM ===== */
+/* ===== UZAY WIDGET - SADECE GENİŞLETİLMİŞ VERSİYON ===== */
+.uzay-widget {
+    flex: 9.5;  /* DAHA GENİŞ (eski 1'di, şimdi 2.2) */
+    background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+    border-radius: 24px;
+    padding: 28px;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 580px;  /* Biraz yükseklik arttı */
+    display: flex;
+    flex-direction: column;
+}
+
+/* İKİ KOLONLU YAPI İÇİN GRID */
+.uzay-ana-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;  /* SOL KOLON DAHA GENİŞ */
+    gap: 25px;
+    margin-top: 15px;
+    flex: 1;
+}
+
+/* SOL KOLON */
+.uzay-sol-kolon {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* SAĞ KOLON */
+.uzay-sag-kolon {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===== YILDIZLAR ===== */
+.yildizlar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 0;
+}
+
+.yildizlar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 10px 100px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 20px 200px, #ffd700, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 30px 300px, #87ceeb, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 400px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 500px, #ffd700, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 150px 150px, #fff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 250px 250px, #87ceeb, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 350px 350px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 450px 450px, #ffd700, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 550px 550px, #fff, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    animation: yildizKaymasi 50s linear infinite;
+    opacity: 0.8;
+}
+
+.yildizlar2::after {
+    background-image: 
+        radial-gradient(1px 1px at 5px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 15px 150px, #87ceeb, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 25px 250px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 35px 350px, #ffd700, rgba(0,0,0,0));
+    background-size: 100px 100px;
+    animation: yildizKaymasi 30s linear infinite;
+    opacity: 0.6;
+}
+
+.yildizlar3::after {
+    background-image: 
+        radial-gradient(1px 1px at 8px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 18px 180px, #87ceeb, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 28px 280px, #ffd700, rgba(0,0,0,0));
+    background-size: 150px 150px;
+    animation: yildizKaymasi 40s linear infinite;
+    opacity: 0.4;
+}
+
+@keyframes yildizKaymasi {
+    from { transform: translateY(0); }
+    to { transform: translateY(-200px); }
+}
+
+/* ===== UZAY ARACI ===== */
+.uzay-araci {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    z-index: 10;
+    animation: uzayAraciHareket 8s ease-in-out infinite;
+}
+
+.uzay-araci i {
+    font-size: 32px;
+    color: #ffd700;
+    transform: rotate(45deg);
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+    animation: titresim 0.5s ease-in-out infinite;
+}
+
+.iz {
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    animation: izUzama 1s ease-out infinite;
+}
+
+@keyframes uzayAraciHareket {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(10px, -10px); }
+    75% { transform: translate(-5px, 5px); }
+}
+
+@keyframes titresim {
+    0%, 100% { transform: rotate(45deg) scale(1); }
+    50% { transform: rotate(45deg) scale(1.1); }
+}
+
+@keyframes izUzama {
+    0% { width: 0; opacity: 1; }
+    100% { width: 50px; opacity: 0; }
+}
+
+/* ===== ANA İÇERİK ===== */
+.uzay-icerik {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.uzay-baslik {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 20px;
+    border-radius: 40px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.uzay-baslik i {
+    color: #87ceeb;
+    font-size: 20px;
+}
+
+.canli-badge {
+    background: linear-gradient(45deg, #ff4444, #ff6b6b);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: auto;
+    animation: canliPulse 2s infinite;
+}
+
+@keyframes canliPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* ===== GEZEGENLER ===== */
+.gezegenler {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+
+.dunya {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.dunya-ic {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #4a90e2, #2c3e50);
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(74, 144, 226, 0.4);
+    position: relative;
+    overflow: hidden;
+    animation: dunyaDonusu 20s linear infinite;
+}
+
+.dunya-ic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, transparent, rgba(0,0,0,0.3));
+    border-radius: 50%;
+}
+
+.dunya-yorunge {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: yorungeDonusu 30s linear infinite;
+}
+
+.ay {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    animation: ayHareketi 15s linear infinite;
+}
+
+.ay-ic {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #bdc3c7, #7f8c8d);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+@keyframes dunyaDonusu {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes yorungeDonusu {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes ayHareketi {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+}
+
+/* ===== ISS KONUMU ===== */
+.iss-konumu {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.iss-baslik {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #87ceeb;
+}
+
+.iss-baslik i {
+    font-size: 18px;
+}
+
+.iss-konum-gosterge {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.konum-satir {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.konum-satir span:first-child {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.konum-deger {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+}
+
+/* ===== ASTRONOT ===== */
+.uzay-gorev {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 16px;
+    padding: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.gorev-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #87ceeb, #4a90e2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    animation: avatarPulse 3s infinite;
+}
+
+@keyframes avatarPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(135, 206, 235, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(135, 206, 235, 0.8); }
+}
+
+.gorev-bilgi {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.gorev-kod {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+}
+
+.gorev-aciklama {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.gorev-durum {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.durum-isik {
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: isikYanipSon 2s infinite;
+}
+
+@keyframes isikYanipSon {
+    0%, 100% { opacity: 1; box-shadow: 0 0 10px #10b981; }
+    50% { opacity: 0.5; box-shadow: 0 0 5px #10b981; }
+}
+
+.durum-yazi {
+    font-size: 12px;
+    color: #10b981;
+}
+
+/* ===== GÜNEŞ SİSTEMİ MİNİ ===== */
+.gunes-sistemi {
+    position: relative;
+    height: 80px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gunes {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, #ffd700, #ff8c00);
+    border-radius: 50%;
+    box-shadow: 0 0 50px #ff8c00;
+    animation: gunesPulse 3s infinite;
+}
+
+@keyframes gunesPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.gezegen {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.yorunge1 {
+    animation: yorunge1 8s linear infinite;
+    background: #87ceeb;
+}
+
+.yorunge2 {
+    animation: yorunge2 12s linear infinite;
+    background: #e74c3c;
+}
+
+.yorunge3 {
+    animation: yorunge3 16s linear infinite;
+    background: #f39c12;
+}
+
+.yorunge4 {
+    animation: yorunge4 20s linear infinite;
+    background: #3498db;
+}
+
+@keyframes yorunge1 {
+    from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+}
+
+@keyframes yorunge2 {
+    from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+@keyframes yorunge3 {
+    from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+@keyframes yorunge4 {
+    from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+}
+
+/* ===== UZAY İSTATİSTİKLERİ ===== */
+.uzay-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.uzay-stats .stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.uzay-stats .stat-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.uzay-stats .stat-item i {
+    font-size: 24px;
+    color: #87ceeb;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .iss-konum-gosterge {
+        grid-template-columns: 1fr;
+    }
+    
+    .gezegenler {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* TAKVİM WIDGET STİLLERİ */
+.takvim-widget {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e5e7eb;
+}
+
+.takvim-baslik {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.takvim-baslik h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.takvim-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.takvim-ay-yil {
+    font-size: 16px;
+    color: #3b82f6;
+    font-weight: 600;
+    background: #eff6ff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    min-width: 120px;
+    text-align: center;
+}
+
+.takvim-nav-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+}
+
+.takvim-nav-btn:hover {
+    background: #2563eb;
+    transform: scale(1.1);
+}
+
+.takvim-icerik {
+    margin-bottom: 25px;
+}
+
+.takvim-hafta-gunleri {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.takvim-gun {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    padding: 8px 0;
+}
+
+.takvim-gunler {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.takvim-gun-hucresi {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4b5563;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.takvim-gun-hucresi:hover {
+    background: #f3f4f6;
+    transform: scale(1.1);
+}
+
+.takvim-gun-hucresi.bugun {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white !important;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    animation: takvimPulse 2s infinite;
+}
+
+.takvim-gun-hucresi.hafta-sonu {
+    color: #ef4444 !important;
+}
+
+.takvim-gun-hucresi.baska-ay {
+    color: #d1d5db !important;
+    opacity: 0.6;
+}
+
+.takvim-gun-hucresi.secili {
+    background: #10b981 !important;
+    color: white !important;
+    border: 2px solid #059669 !important;
+    transform: scale(1.1);
+}
+
+.takvim-gun-hucresi.etkinlikli::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    width: 5px;
+    height: 5px;
+    background: #ef4444;
+    border-radius: 50%;
+}
+
+@keyframes takvimPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* GÜNLÜK DURUM */
+.gunluk-durum {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+}
+
+.durum-baslik {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.durum-baslik h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.durum-icerik {
+    text-align: center;
+}
+
+.durum-ilerleme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ilerleme-text {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.ilerleme-deger {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+.ilerleme-cubugu {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.ilerleme-doluluk {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* 5. DAILY STATUS */
+.daily-status {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+}
+
+.status-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.status-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.status-content {
+    text-align: center;
+}
+
+.status-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.progress-text {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.progress-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* 6. ANA KONTEYNER */
 .calendar-app {
     max-width: 1600px;
-    margin: 0 auto;
+    margin: 20px auto;
     background: var(--white);
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
-/* 3. HEADER */
+/* 7. HEADER */
 .calendar-header {
     background: var(--navy-blue);
     color: var(--white);
@@ -70,7 +946,7 @@ body {
     color: var(--light-blue);
 }
 
-.live-clock {
+.header-left .live-clock {
     background: rgba(255, 255, 255, 0.1);
     padding: 8px 15px;
     border-radius: 8px;
@@ -80,10 +956,6 @@ body {
     font-weight: 600;
     font-family: 'Courier New', monospace;
     letter-spacing: 1px;
-}
-
-.live-clock i {
-    color: var(--light-blue);
 }
 
 .calendar-btn {
@@ -105,13 +977,13 @@ body {
     transform: translateY(-2px);
 }
 
-/* 4. ANA İÇERİK */
+/* 8. ANA İÇERİK */
 .calendar-main {
     display: flex;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 180px);
 }
 
-/* 5. SIDEBAR */
+/* 9. SIDEBAR */
 .calendar-sidebar {
     width: 320px;
     background: var(--light-gray);
@@ -164,7 +1036,7 @@ body {
     font-weight: 600;
 }
 
-/* 6. FORM ELEMENTLERİ */
+/* 10. FORM ELEMENTLERİ */
 .quick-add {
     background: var(--white);
     border-radius: 12px;
@@ -181,7 +1053,7 @@ body {
     gap: 10px;
 }
 
-.form-input, .form-select, .form-textarea {
+.form-input, .form-textarea, .form-select {
     width: 100%;
     padding: 10px 15px;
     margin-bottom: 12px;
@@ -189,12 +1061,32 @@ body {
     border-radius: 8px;
     font-size: 14px;
     transition: all 0.3s ease;
+    background-color: white;
+    color: black !important; /* SİYAH YAZI */
 }
 
-.form-input:focus, .form-select:focus, .form-textarea:focus {
+.form-input:focus, .form-textarea:focus, .form-select:focus {
     outline: none;
     border-color: var(--light-blue);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Select için özel stiller */
+.form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236b7280' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+/* Option'lar için siyah yazı */
+.form-select option {
+    color: black !important;
+    background-color: white !important;
 }
 
 .form-row {
@@ -235,7 +1127,7 @@ body {
     box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
 }
 
-/* 7. KATEGORİLER */
+/* 11. KATEGORİLER */
 .categories h3 {
     font-size: 18px;
     margin-bottom: 15px;
@@ -277,6 +1169,7 @@ body {
 .category-name {
     flex-grow: 1;
     font-weight: 500;
+    color: var(--text-dark);
 }
 
 .category-count {
@@ -285,9 +1178,10 @@ body {
     border-radius: 12px;
     font-size: 12px;
     font-weight: 600;
+    color: var(--text-dark);
 }
 
-/* 8. YAKLAŞAN ETKİNLİKLER */
+/* 12. YAKLAŞAN ETKİNLİKLER */
 .upcoming-events h3 {
     font-size: 18px;
     margin-bottom: 15px;
@@ -314,7 +1208,11 @@ body {
     opacity: 0.5;
 }
 
-/* 9. TAKVİM İÇERİĞİ */
+.empty-state p {
+    color: var(--text-light);
+}
+
+/* 13. TAKVİM İÇERİĞİ */
 .calendar-content {
     flex: 1;
     padding: 25px;
@@ -322,7 +1220,7 @@ body {
     flex-direction: column;
 }
 
-/* 10. TAKVİM ARAÇ ÇUBUĞU */
+/* 14. TAKVİM ARAÇ ÇUBUĞU */
 .calendar-toolbar {
     display: flex;
     justify-content: space-between;
@@ -398,27 +1296,28 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 11. FULLCALENDAR STİLLERİ */
+/* 15. FULLCALENDAR STİLLERİ - ANA TAKVİM */
 #calendar {
     flex: 1;
     min-height: 700px;
 }
 
-/* FullCalendar Özel Stiller */
+/* FullCalendar Özel Stiller - YAZILAR SİYAH */
 .fc {
     font-family: inherit;
+    color: #000000 !important; /* ANA TAKVİM YAZILARI SİYAH */
 }
 
 .fc .fc-toolbar-title {
     font-size: 1.75em;
-    color: var(--navy-blue);
+    color: #000000 !important; /* SİYAH */
     font-weight: 600;
 }
 
 .fc .fc-button {
     background: var(--white);
     border: 2px solid #e2e8f0;
-    color: var(--text-dark);
+    color: #000000 !important; /* SİYAH */
     font-weight: 500;
     transition: all 0.3s ease;
 }
@@ -426,21 +1325,27 @@ body {
 .fc .fc-button:hover {
     border-color: var(--light-blue);
     background: rgba(59, 130, 246, 0.05);
+    color: #000000 !important;
 }
 
 .fc .fc-button-primary:not(:disabled).fc-button-active {
     background: var(--light-blue);
     border-color: var(--light-blue);
-    color: white;
+    color: white !important;
 }
 
 .fc .fc-daygrid-day-number {
     font-weight: 600;
-    color: var(--text-dark);
+    color: #000000 !important; /* SİYAH */
 }
 
 .fc .fc-day-today {
     background: rgba(59, 130, 246, 0.05) !important;
+}
+
+.fc .fc-day-today .fc-daygrid-day-number {
+    color: var(--light-blue) !important;
+    font-weight: 700;
 }
 
 .fc .fc-event {
@@ -449,6 +1354,7 @@ body {
     padding: 4px 8px;
     font-size: 14px;
     cursor: pointer;
+    color: white !important;
 }
 
 .fc .fc-event:hover {
@@ -465,7 +1371,27 @@ body {
     background: rgba(59, 130, 246, 0.05);
 }
 
-/* 12. MODAL */
+/* Haftanın günleri */
+.fc .fc-col-header-cell-cushion {
+    color: #000000 !important; /* SİYAH */
+    font-weight: 600;
+}
+
+/* Ay görünümü hücreleri */
+.fc .fc-daygrid-day-frame {
+    color: #000000 !important; /* SİYAH */
+}
+
+/* Liste görünümü */
+.fc .fc-list-day-cushion {
+    color: #000000 !important; /* SİYAH */
+}
+
+.fc .fc-list-event-title {
+    color: #000000 !important; /* SİYAH */
+}
+
+/* 16. MODAL */
 .modal {
     display: none;
     position: fixed;
@@ -521,15 +1447,21 @@ body {
     padding: 30px;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
+.modal-body .form-group label {
     display: block;
     margin-bottom: 8px;
     color: var(--text-dark);
     font-weight: 500;
+}
+
+.modal-body .form-input,
+.modal-body .form-select,
+.modal-body .form-textarea {
+    color: #000000 !important; /* SİYAH */
+}
+
+.modal-body .form-select option {
+    color: #000000 !important; /* SİYAH */
 }
 
 .form-actions {
@@ -571,8 +1503,12 @@ body {
     transform: translateY(-2px);
 }
 
-/* 13. RESPONSIVE */
+/* 17. RESPONSIVE */
 @media (max-width: 1200px) {
+    .dashboard-overview {
+        flex-direction: column;
+    }
+    
     .calendar-main {
         flex-direction: column;
     }
@@ -582,15 +1518,14 @@ body {
         border-right: none;
         border-bottom: 1px solid #e2e8f0;
     }
-    
-    .sidebar-content {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-    }
 }
 
 @media (max-width: 768px) {
+    .dashboard-overview {
+        padding: 0 10px;
+        margin: 10px auto;
+    }
+    
     .calendar-header {
         flex-direction: column;
         gap: 15px;
@@ -617,12 +1552,14 @@ body {
         flex-wrap: wrap;
     }
     
-    .sidebar-content {
-        grid-template-columns: 1fr;
+    .widget-day {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
     }
 }
 
-/* 14. SCROLLBAR */
+/* 18. SCROLLBAR */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
