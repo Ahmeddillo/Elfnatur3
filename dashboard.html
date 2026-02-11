@@ -1,20 +1,179 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elfnatur - Akıllı Takvim</title>
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- FullCalendar CSS -->
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
-    
+
     <!-- Kendi CSS -->
     <link rel="stylesheet" href="dashStyle.css">
 </head>
+
 <body>
+    <!-- Fotoğraftaki Görünüm - YENİ EKLENEN BÖLÜM -->
+    <div class="dashboard-overview">
+        <div class="time-schedule">
+            <div class="live-clock" id="liveClock">
+                <i class="fas fa-clock"></i>
+                <span>00:00:00</span>
+            </div>
+        </div>
+
+        <!-- EKLENECEK KISIM BURADADIR -->
+        <div class="uzay-widget">
+            <!-- Animasyonlu yıldızlar -->
+            <div class="yildizlar"></div>
+            <div class="yildizlar yildizlar2"></div>
+            <div class="yildizlar yildizlar3"></div>
+
+            <!-- Uzay aracı / UFO -->
+            <div class="uzay-araci">
+                <i class="fas fa-rocket"></i>
+                <div class="iz"></div>
+            </div>
+
+            <!-- Ana içerik -->
+            <div class="uzay-icerik">
+                <div class="uzay-baslik">
+                    <i class="fas fa-satellite"></i>
+                    <span>UZAY KONUMLAYICI</span>
+                    <span class="canli-badge">CANLI</span>
+                </div>
+
+                <!-- Dünya ve Ay görseli -->
+                <div class="gezegenler">
+                    <div class="dunya">
+                        <div class="dunya-ic"></div>
+                        <div class="dunya-yorunge"></div>
+                    </div>
+                    <div class="ay">
+                        <div class="ay-ic"></div>
+                    </div>
+                </div>
+
+                <!-- ISS Konumu -->
+                <div class="iss-konumu">
+                    <div class="iss-baslik">
+                        <i class="fas fa-space-shuttle"></i>
+                        <span>ULUSLARARASI UZAY İSTASYONU</span>
+                    </div>
+                    <div class="iss-konum-gosterge">
+                        <div class="konum-satir">
+                            <span>Enlem</span>
+                            <span class="konum-deger" id="issEnlem">42.36° K</span>
+                        </div>
+                        <div class="konum-satir">
+                            <span>Boylam</span>
+                            <span class="konum-deger" id="issBoylam">71.05° D</span>
+                        </div>
+                        <div class="konum-satir">
+                            <span>Yükseklik</span>
+                            <span class="konum-deger" id="issYukseklik">408 km</span>
+                        </div>
+                        <div class="konum-satir">
+                            <span>Hız</span>
+                            <span class="konum-deger" id="issHiz">27.600 km/s</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Astronot/Görev bilgisi -->
+                <div class="uzay-gorev">
+                    <div class="gorev-avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="gorev-bilgi">
+                        <span class="gorev-kod">Ax-3</span>
+                        <span class="gorev-aciklama">Özel Astronot Misyonu</span>
+                    </div>
+                    <div class="gorev-durum">
+                        <span class="durum-isik"></span>
+                        <span class="durum-yazi">Görev Devam Ediyor</span>
+                    </div>
+                </div>
+
+                <!-- Güneş Sistemi Mini -->
+                <div class="gunes-sistemi">
+                    <div class="gunes"></div>
+                    <div class="gezegen yorunge1"></div>
+                    <div class="gezegen yorunge2"></div>
+                    <div class="gezegen yorunge3"></div>
+                    <div class="gezegen yorunge4"></div>
+                </div>
+
+                <!-- Uzay istatistikleri -->
+                <div class="uzay-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-meteor"></i>
+                        <span class="stat-value" id="astronotSayisi">7</span>
+                        <span class="stat-label">Uzayda Astronot</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-satellite"></i>
+                        <span class="stat-value" id="uyduSayisi">3.372</span>
+                        <span class="stat-label">Aktif Uydu</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span class="stat-value" id="uzayZamani">22:46</span>
+                        <span class="stat-label">UTC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="takvim-widget">
+            <div class="takvim-baslik">
+                <h3><i class="fas fa-calendar"></i> Takvim</h3>
+                <div class="takvim-nav">
+                    <button class="takvim-nav-btn" id="prevMonthBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="takvim-ay-yil" id="takvimAyYil">Şubat 2026</span>
+                    <button class="takvim-nav-btn" id="nextMonthBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="takvim-icerik">
+                <div class="takvim-hafta-gunleri">
+                    <div class="takvim-gun">PZT</div>
+                    <div class="takvim-gun">SAL</div>
+                    <div class="takvim-gun">CAR</div>
+                    <div class="takvim-gun">PER</div>
+                    <div class="takvim-gun">CUM</div>
+                    <div class="takvim-gun">CMT</div>
+                    <div class="takvim-gun">PAZ</div>
+                </div>
+                <div class="takvim-gunler" id="takvimGunler">
+                    <!-- Canlı takvim buraya JavaScript ile eklenecek -->
+                </div>
+            </div>
+
+            <div class="gunluk-durum">
+                <div class="durum-baslik">
+                    <h3><i class="fas fa-chart-bar"></i> Günlük Durum</h3>
+                </div>
+                <div class="durum-icerik">
+                    <div class="durum-ilerleme">
+                        <div class="ilerleme-text">Tamamlanan</div>
+                        <div class="ilerleme-deger" id="tamamlananGorev">0/0</div>
+                    </div>
+                    <div class="ilerleme-cubugu">
+                        <div class="ilerleme-doluluk" id="ilerlemeDoluluk" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Ana Konteyner -->
     <div class="calendar-app">
         <!-- Header -->
@@ -24,12 +183,9 @@
                     <i class="fas fa-calendar-alt"></i>
                     <span>Elfnatur Takvim</span>
                 </div>
-                <div class="live-clock" id="liveClock">
-                    <i class="fas fa-clock"></i>
-                    <span>00:00:00</span>
-                </div>
+
             </div>
-            
+
             <div class="header-right">
                 <button class="calendar-btn" id="logoutBtn">
                     <i class="fas fa-sign-out-alt"></i>
@@ -57,14 +213,16 @@
                     <input type="text" id="eventTitle" placeholder="Etkinlik Başlığı" class="form-input">
                     <div class="form-row">
                         <input type="date" id="eventDate" class="form-input" value="2026-02-09">
-                        <select id="eventCategory" class="form-select">
-                            <option value="#3b82f6">💼 İş</option>
-                            <option value="#10b981">👤 Kişisel</option>
-                            <option value="#8b5cf6">🤝 Toplantı</option>
-                            <option value="#ef4444">🏃 Sağlık</option>
-                            <option value="#f59e0b">📚 Eğitim</option>
-                            <option value="#ec4899">🎉 Sosyal</option>
-                        </select>
+                        <div class="custom-select-wrapper">
+                            <select id="eventCategory" class="form-select">
+                                <option value="#3b82f6">💼 İş</option>
+                                <option value="#10b981">👤 Kişisel</option>
+                                <option value="#8b5cf6">🤝 Toplantı</option>
+                                <option value="#ef4444">🏃 Sağlık</option>
+                                <option value="#f59e0b">📚 Eğitim</option>
+                                <option value="#ec4899">🎉 Sosyal</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-row">
                         <input type="time" id="eventStartTime" class="form-input" value="09:00">
@@ -133,7 +291,7 @@
                         </button>
                         <h2 class="current-date" id="currentDate">Şubat 2026</h2>
                     </div>
-                    
+
                     <div class="toolbar-right">
                         <div class="view-buttons">
                             <button class="view-btn active" data-view="dayGridMonth">
@@ -179,7 +337,7 @@
                         <label>Başlık</label>
                         <input type="text" id="modalEventTitle" class="form-input" required>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label>Başlangıç</label>
@@ -190,7 +348,7 @@
                             <input type="datetime-local" id="modalEventEnd" class="form-input" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Kategori</label>
                         <select id="modalEventCategory" class="form-select">
@@ -202,12 +360,12 @@
                             <option value="#ec4899">🎉 Sosyal</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Açıklama</label>
                         <textarea id="modalEventDescription" class="form-textarea" rows="4"></textarea>
                     </div>
-                    
+
                     <div class="form-actions">
                         <button type="button" class="btn-secondary" id="cancelBtn">İptal</button>
                         <button type="submit" class="btn-primary" id="saveEventBtn">Kaydet</button>
@@ -221,8 +379,9 @@
     <!-- FullCalendar JS -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/tr.js'></script>
-    
+
     <!-- Kendi JS -->
     <script src="dashScript.js"></script>
 </body>
+
 </html>
