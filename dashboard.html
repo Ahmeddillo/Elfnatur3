@@ -129,6 +129,92 @@
             </div>
         </div>
 
+        <!-- ===== ELFNATUR GALAKTİK DROPDOWN MENU ===== -->
+        <!-- ===== ELFNATUR SATÜRN DROPDOWN MENU ===== -->
+        <div class="galaktik-dropdown">
+            <!-- Satürn Logo - Tıklandığında menü açılır -->
+            <!-- Satürn Logo - Tıklandığında menü açılır -->
+            <div class="saturn-logo" id="saturnMenuBtn">
+                <div class="saturn-gezegen">
+                    <!-- FONT AWESOME 5 İÇİN GLOBE + HALKASSS -->
+                    <i class="fas fa-globe" style="color: #e2d4b7; font-size: 20px;"></i>
+                    <div class="saturn-halka"></div>
+                </div>
+                <span class="elfnatur-yazi">ELFNATUR</span>
+            </div>
+
+            <!-- Dropdown Menü İçeriği -->
+            <div class="dropdown-icerik" id="dropdownMenu">
+                <!-- Kullanıcı Bilgisi -->
+                <div class="menu-kullanici">
+                    <div class="kullanici-avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="kullanici-bilgi">
+                        <span class="kullanici-ad">Uzay Elçisi</span>
+                        <span class="kullanici-email">demo@elfnatur.com</span>
+                    </div>
+                    <span class="kullanici-vip">VIP</span>
+                </div>
+
+                <!-- Menü Öğeleri -->
+                <div class="menu-ogeler">
+                    <div class="menu-oge" data-sekme="ana" onclick="window.location.href='dashboard.html';"
+                        style="cursor: pointer;">
+                        <div class="oge-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <span class="oge-yazi">Ana Uzay ve Planlama</span>
+                    </div>
+                    <div class="menu-oge" data-sekme="galaksi">
+                        <div class="oge-icon">
+                            <i class="fas fa-galaxy"></i>
+                        </div>
+                        <span class="oge-yazi">Galaksi</span>
+                    </div>
+                    <div class="menu-oge vip-oge" data-sekme="kurs">
+                        <div class="oge-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="oge-yazi">Kurslar</span>
+                        <span class="oge-vip">VIP</span>
+                    </div>
+                    <div class="menu-oge" data-sekme="arama">
+                        <div class="oge-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <span class="oge-yazi">Arama</span>
+                    </div>
+                    <div class="menu-oge vip-oge" data-sekme="profil">
+                        <div class="oge-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <span class="oge-yazi">Profil</span>
+                        <span class="oge-vip">VIP</span>
+                    </div>
+                    <div class="menu-oge" data-sekme="iletisim">
+                        <div class="oge-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span class="oge-yazi">İletişim</span>
+                    </div>
+                </div>
+
+                <!-- Çıkış Butonu -->
+                <button class="cikis-btn" id="menuLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Çıkış Yap</span>
+                </button>
+
+                <!-- Uzay Koordinatları -->
+                <div class="menu-koordinat">
+                    <i class="fas fa-map-pin"></i>
+                    <span id="menuKoordinat">Satürn • Halka Sektörü 95</span>
+                </div>
+            </div>
+        </div>
+        <!-- ===== ELFNATUR GALAKTİK DROPDOWN MENU SONU ===== -->
+
         <div class="takvim-widget">
             <div class="takvim-baslik">
                 <h3><i class="fas fa-calendar"></i> Takvim</h3>
@@ -382,6 +468,44 @@
 
     <!-- Kendi JS -->
     <script src="dashScript.js"></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 
 </html>
