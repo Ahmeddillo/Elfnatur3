@@ -120,6 +120,72 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// ===== ELFNATUR GALAKTİK DROPDOWN MENU =====
+// ===== SATÜRN DROPDOWN MENU - ÇALIŞAN VERSİYON =====
+document.addEventListener('DOMContentLoaded', function() {
+    const saturnBtn = document.getElementById('saturnMenuBtn');
+    const dropdown = document.querySelector('.galaktik-dropdown');
+    
+    if (!saturnBtn || !dropdown) return;
+    
+    // TIKLAMA OLAYI - Menü aç/kapa
+    saturnBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        // Active class ekle/çıkar
+        this.classList.toggle('active');
+        dropdown.classList.toggle('open');
+        
+        console.log('Satürn tıklandı! Menü açılıyor...');
+    });
+    
+    // Menü öğelerine tıklama
+    document.querySelectorAll('.menu-oge').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const sekme = this.dataset.sekme;
+            console.log(`${sekme} sekmesi açıldı`);
+            
+            // Menüyü kapatmak istersen:
+            // saturnBtn.classList.remove('active');
+            // dropdown.classList.remove('open');
+        });
+    });
+    
+    // Dışarı tıklayınca kapat
+    document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target) && !saturnBtn.contains(e.target)) {
+            saturnBtn.classList.remove('active');
+            dropdown.classList.remove('open');
+        }
+    });
+    
+    // ESC tuşu ile kapat
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            saturnBtn.classList.remove('active');
+            dropdown.classList.remove('open');
+        }
+    });
+    
+    // Çıkış butonu
+    const cikisBtn = document.getElementById('menuLogoutBtn');
+    if (cikisBtn) {
+        cikisBtn.addEventListener('click', function() {
+            alert('🚀 Satürn\'den çıkış yapılıyor...');
+        });
+    }
+    
+    // Koordinatları güncelle
+    function koordinatGuncelle() {
+        const koordinatEl = document.getElementById('menuKoordinat');
+        if (koordinatEl) {
+            koordinatEl.innerHTML = 'Satürn • Halka Sektörü ' + Math.floor(Math.random() * 100);
+        }
+    }
+    setInterval(koordinatGuncelle, 5000);
+});
 // CANLI TAKVİM OLUŞTURMA
 function updateLiveCalendar() {
     const now = new Date();
