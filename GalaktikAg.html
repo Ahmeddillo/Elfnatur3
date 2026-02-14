@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elftatur - Galaktik Ağ</title>
     <link rel="stylesheet" href="AgStyle.css">
-    <!-- Font Awesome için -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -18,192 +19,387 @@
         </div>
     </header>
 
-    <!-- Üst Navigasyon Çubuğu -->
-    <nav class="nav-bar">
-        <div class="nav-left">
-            <!-- Explore Butonu -->
-            <div class="nav-item" id="exploreBtn">
-                <i class="fas fa-compass"></i>
-                <span class="nav-text">Explore</span>
+    <!-- ===== ELFNATUR GALAKTİK DROPDOWN MENU ===== -->
+    <!-- ===== ELFNATUR SATÜRN DROPDOWN MENU ===== -->
+    <div class="galaktik-dropdown">
+        <!-- Satürn Logo - Tıklandığında menü açılır -->
+        <!-- Satürn Logo - Tıklandığında menü açılır -->
+        <div class="saturn-logo" id="saturnMenuBtn">
+            <div class="saturn-gezegen">
+                <!-- FONT AWESOME 5 İÇİN GLOBE + HALKASSS -->
+                <i class="fas fa-globe" style="color: #e2d4b7; font-size: 20px;"></i>
+                <div class="saturn-halka"></div>
             </div>
-
-            <!-- Search Butonu -->
-            <div class="nav-item" id="searchBtn">
-                <i class="fas fa-search"></i>
-                <span class="nav-text">Search</span>
-            </div>
+            <span class="elfnatur-yazi">ELFNATUR</span>
         </div>
 
-        <!-- Arama Çubuğu -->
-        <div class="search-container">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" class="search-input" id="accountSearch" placeholder="Bir hesap ara...">
-        </div>
-    </nav>
-
-    <!-- Ana İçerik -->
-    <main class="main-content">
-        <h1 class="content-title">Galaktik Ağ'a Hoş Geldiniz</h1>
-
-        <!-- Explore Bölümü - Gönderiler -->
-        <section class="posts-section" id="postsSection">
-            <h2><i class="fas fa-newspaper"></i> Son Gönderiler</h2>
-            
-            <div class="post">
-                <div class="post-header">
-                    <div class="avatar">S</div>
-                    <div class="user-info">
-                        <h4>SpaceExplorer42</h4>
-                        <p class="post-time">2 saat önce • Andromeda Galaksisi</p>
-                    </div>
+        <!-- Dropdown Menü İçeriği -->
+        <div class="dropdown-icerik" id="dropdownMenu">
+            <!-- Kullanıcı Bilgisi -->
+            <div class="menu-kullanici">
+                <div class="kullanici-avatar">
+                    <i class="fas fa-user-astronaut"></i>
                 </div>
-                <div class="post-content">
-                    Bugün Nebula X-7'yi keşfettim! İnanılmaz bir renk şöleni. Yıldız tozları arasında gezinen mikroorganizmalar bile tespit ettim. Uzay gerçekten hayal ettiğimizden daha canlı!
+                <div class="kullanici-bilgi">
+                    <span class="kullanici-ad">Uzay Elçisi</span>
+                    <span class="kullanici-email">demo@elfnatur.com</span>
                 </div>
-                <div class="post-actions">
-                    <div class="post-action">
-                        <i class="far fa-heart"></i>
-                        <span>124</span>
+                <span class="kullanici-vip">VIP</span>
+            </div>
+
+            <!-- Menü Öğeleri -->
+            <div class="menu-ogeler">
+                <div class="menu-oge" data-sekme="ana" onclick="window.location.href='dashboard.html';"
+                    style="cursor: pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-rocket"></i>
                     </div>
-                    <div class="post-action">
-                        <i class="far fa-comment"></i>
-                        <span>23</span>
+                    <span class="oge-yazi">Ana Uzay ve Planlama</span>
+                </div>
+                <div class="menu-oge" data-sekme="ana" onclick="window.location.href='GalaktikAg.html';"
+                    style="cursor: pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-galaxy"></i>
                     </div>
-                    <div class="post-action">
-                        <i class="fas fa-share"></i>
-                        <span>Paylaş</span>
+                    <span class="oge-yazi">Galaksi</span>
+                </div>
+                <div class="menu-oge vip-oge" data-sekme="kurs">
+                    <div class="oge-icon">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
+                    <span class="oge-yazi">Kurslar</span>
+                    <span class="oge-vip">VIP</span>
+                </div>
+                <div class="menu-oge" data-sekme="arama">
+                    <div class="oge-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <span class="oge-yazi">Arama</span>
+                </div>
+                <div class="menu-oge vip-oge" data-sekme="profil">
+                    <div class="oge-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <span class="oge-yazi">Profil</span>
+                    <span class="oge-vip">VIP</span>
+                </div>
+                <div class="menu-oge" data-sekme="iletisim">
+                    <div class="oge-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span class="oge-yazi">İletişim</span>
                 </div>
             </div>
 
-            <div class="post">
-                <div class="post-header">
-                    <div class="avatar">C</div>
-                    <div class="user-info">
-                        <h4>CosmoTraveler</h4>
-                        <p class="post-time">1 gün önce • Orion Takımyıldızı</p>
+            <!-- Çıkış Butonu -->
+            <button class="cikis-btn" id="menuLogoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Çıkış Yap</span>
+            </button>
+
+            <!-- Uzay Koordinatları -->
+            <div class="menu-koordinat">
+                <i class="fas fa-map-pin"></i>
+                <span id="menuKoordinat">Satürn • Halka Sektörü 95</span>
+            </div>
+        </div>
+    </div>
+    <!-- ===== ELFNATUR GALAKTİK DROPDOWN MENU SONU ===== -->
+
+    <!-- Ana İçerik Grid -->
+    <main class="main-grid">
+        <!-- SOL SİDEBAR - KATEGORİLER -->
+        <aside class="sidebar-left">
+            <div class="kategori-kutu">
+                <h3 class="kategori-baslik">Galaksi Keşfet</h3>
+                <p class="kategori-alt">Son dakika haberleri, bilim dünyası ve topluluk paylaşımları</p>
+
+                <div class="kategori-liste">
+                    <div class="kategori-item" data-kategori="tumu">
+                        <i class="fas fa-globe"></i>
+                        <span>Tümü</span>
+                    </div>
+                    <div class="kategori-item" data-kategori="haberler">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Haberler</span>
+                    </div>
+                    <div class="kategori-item" data-kategori="bilim">
+                        <i class="fas fa-flask"></i>
+                        <span>Bilim</span>
+                    </div>
+                    <div class="kategori-item" data-kategori="teknoloji">
+                        <i class="fas fa-microchip"></i>
+                        <span>Teknoloji</span>
+                    </div>
+                    <div class="kategori-item" data-kategori="uzay">
+                        <i class="fas fa-saturn"></i>
+                        <span>Uzay</span>
                     </div>
                 </div>
-                <div class="post-content">
-                    Yeni warp sürücü teknolojimizi test ettik! Işık hızının 3 katına çıkabildik. Yakında daha uzak galaksilere yolculuk mümkün olacak. Heyecanla bekleyin!
+
+                <!-- Arama Kutusu -->
+                <div class="arama-kutusu">
+                    <i class="fas fa-search arama-icon"></i>
+                    <input type="text" class="arama-input" placeholder="Galakside ara...">
                 </div>
-                <div class="post-actions">
-                    <div class="post-action">
-                        <i class="far fa-heart"></i>
-                        <span>356</span>
+            </div>
+        </aside>
+
+        <!-- ORTA İÇERİK - GÖNDERİLER -->
+        <section class="orta-icerik">
+            <!-- Yeni gönderi -->
+            <div class="yeni-gonderi">
+                <div class="gonderi-avatar">A</div>
+                <input type="text" class="gonderi-input" placeholder="Bir şeyler paylaş...">
+                <button class="gonderi-btn"><i class="fas fa-rocket"></i></button>
+            </div>
+
+            <!-- Gönderiler -->
+            <div class="gonderiler-akisi">
+                <!-- Gönderi 1 - NASA Haberi -->
+                <div class="gonderi-kart">
+                    <div class="gonderi-baslik">
+                        <div class="kullanici-bilgi">
+                            <span class="kullanici-ad">NASA</span>
+                            <span class="kullanici-etiket">@nasa</span>
+                            <span class="gonderi-zaman">2 saat önce</span>
+                        </div>
                     </div>
-                    <div class="post-action">
-                        <i class="far fa-comment"></i>
-                        <span>47</span>
+
+                    <div class="gonderi-icerik">
+                        <h4>James Webb'den Rekor Keşif</h4>
+                        <p>NASA'nın James Webb Uzay Teleskobu, şimdiye kadarki en uzak galaksiyi görüntüledi. Bu keşif,
+                            evrenin erken dönemlerini anlamamızda yardımcı olacak.</p>
+
+                        <div class="gonderi-gorsel">
+                            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600" alt="Galaksi">
+                        </div>
                     </div>
-                    <div class="post-action">
-                        <i class="fas fa-share"></i>
-                        <span>Paylaş</span>
+
+                    <div class="gonderi-etkilesim">
+                        <span><i class="far fa-heart"></i> 1.2k</span>
+                        <span><i class="far fa-comment"></i> 234</span>
+                        <span><i class="fas fa-retweet"></i> 89</span>
+                    </div>
+                </div>
+
+                <!-- Gönderi 2 - Bilim Haberi -->
+                <div class="gonderi-kart">
+                    <div class="gonderi-baslik">
+                        <div class="kullanici-bilgi">
+                            <span class="kullanici-ad">Dr. Ahmet Yılmaz</span>
+                            <span class="kullanici-etiket">@ahmetyilmaz</span>
+                            <span class="gonderi-zaman">4 saat önce</span>
+                        </div>
+                    </div>
+
+                    <div class="gonderi-icerik">
+                        <h4>Yapay Zeka Devrimi</h4>
+                        <p>Yeni araştırmamız Nature dergisinde yayınlandı! Yapay zeka destekli protein katlama
+                            algoritması ile ilaç geliştirme süreçlerini %60 hızlandırdık.</p>
+                    </div>
+
+                    <div class="gonderi-etkilesim">
+                        <span><i class="far fa-heart"></i> 3.4k</span>
+                        <span><i class="far fa-comment"></i> 567</span>
+                        <span><i class="fas fa-retweet"></i> 178</span>
+                    </div>
+                </div>
+
+                <!-- Gönderi 3 - Teknoloji Haberi -->
+                <div class="gonderi-kart">
+                    <div class="gonderi-baslik">
+                        <div class="kullanici-bilgi">
+                            <span class="kullanici-ad">Teknoloji Haberleri</span>
+                            <span class="kullanici-etiket">@teknohaberler</span>
+                            <span class="gonderi-zaman">6 saat önce</span>
+                        </div>
+                    </div>
+
+                    <div class="gonderi-icerik">
+                        <h4>Apple M4 Çipi Tanıtıldı</h4>
+                        <p>Apple, yeni nesil M4 çipini tanıttı. Yapay zeka işlemlerinde %40 daha hızlı performans vaat
+                            ediyor.</p>
+
+                        <div class="gonderi-gorsel">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600"
+                                alt="Teknoloji">
+                        </div>
+                    </div>
+
+                    <div class="gonderi-etkilesim">
+                        <span><i class="far fa-heart"></i> 892</span>
+                        <span><i class="far fa-comment"></i> 123</span>
+                        <span><i class="fas fa-retweet"></i> 45</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Search Bölümü - Hesap Arama -->
-        <section class="search-section" id="searchSection">
-            <h2><i class="fas fa-user-astronaut"></i> Hesap Arama</h2>
-            
-            <div class="search-results" id="searchResults">
-                <!-- Arama sonuçları buraya gelecek -->
+        <!-- SAĞ SİDEBAR - KİMLER NE PAYLAŞMIŞ -->
+        <aside class="sidebar-right">
+            <div class="kutu">
+                <h3 class="kutu-baslik">En Aktif Hesaplar</h3>
+
+                <div class="hesap-liste">
+                    <div class="hesap-item">
+                        <div class="hesap-avatar">A</div>
+                        <div class="hesap-bilgi">
+                            <span class="hesap-ad">Dr. Ahmet Yılmaz</span>
+                            <span class="hesap-etiket">@ahmetyilmaz</span>
+                        </div>
+                    </div>
+
+                    <div class="hesap-item">
+                        <div class="hesap-avatar">P</div>
+                        <div class="hesap-bilgi">
+                            <span class="hesap-ad">Prof. Ayşe Demir</span>
+                            <span class="hesap-etiket">@aysedemir</span>
+                        </div>
+                    </div>
+
+                    <div class="hesap-item">
+                        <div class="hesap-avatar">T</div>
+                        <div class="hesap-bilgi">
+                            <span class="hesap-ad">Teknoloji Haberleri</span>
+                            <span class="hesap-etiket">@teknohaberler</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <div class="kutu">
+                <h3 class="kutu-baslik">Trend Konular</h3>
+
+                <div class="trend-liste">
+                    <div class="trend-item">
+                        <span class="trend-sira">1</span>
+                        <span class="trend-konu">#JamesWebb</span>
+                        <span class="trend-sayi">1.2k gönderi</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-sira">2</span>
+                        <span class="trend-konu">#YapayZeka</span>
+                        <span class="trend-sayi">856 gönderi</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-sira">3</span>
+                        <span class="trend-konu">#UzayKeşif</span>
+                        <span class="trend-sayi">743 gönderi</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kutu">
+                <h3 class="kutu-baslik">Önerilen Hesaplar</h3>
+
+                <div class="hesap-item oneri">
+                    <div class="hesap-avatar">S</div>
+                    <div class="hesap-bilgi">
+                        <span class="hesap-ad">SpaceX</span>
+                        <span class="hesap-etiket">@spacex</span>
+                    </div>
+                    <button class="takip-btn">+</button>
+                </div>
+
+                <div class="hesap-item oneri">
+                    <div class="hesap-avatar">N</div>
+                    <div class="hesap-bilgi">
+                        <span class="hesap-ad">NASA</span>
+                        <span class="hesap-etiket">@nasa</span>
+                    </div>
+                    <button class="takip-btn">+</button>
+                </div>
+            </div>
+        </aside>
     </main>
 
     <script>
-        // DOM Elementleri
-        const exploreBtn = document.getElementById('exploreBtn');
-        const searchBtn = document.getElementById('searchBtn');
-        const accountSearch = document.getElementById('accountSearch');
-        const postsSection = document.getElementById('postsSection');
-        const searchSection = document.getElementById('searchSection');
-        const searchResults = document.getElementById('searchResults');
+        // Kategori seçimi
+        document.querySelectorAll('.kategori-item').forEach(item => {
+            item.addEventListener('click', function () {
+                document.querySelectorAll('.kategori-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
 
-        // Örnek hesaplar
-        const sampleAccounts = [
-            { name: "GalacticVoyager", username: "@voyager_alpha", bio: "Interstellar explorer • 42 planets visited" },
-            { name: "NebulaHunter", username: "@hunter_nebula", bio: "Photographing cosmic clouds • Space photographer" },
-            { name: "StellarEngineer", username: "@star_engineer", bio: "Building tomorrow's spaceships • CEO @SpaceTech" },
-            { name: "AlienLinguist", username: "@alien_talk", bio: "Decoding extraterrestrial languages • Xenolinguistics expert" },
-            { name: "QuantumPilot", username: "@quantum_flight", bio: "Folding space since 2077 • Quantum drive specialist" }
-        ];
+                const kategori = this.dataset.kategori;
+                console.log('Seçilen kategori:', kategori);
 
-        // Explore butonu tıklama
-        exploreBtn.addEventListener('click', function() {
-            postsSection.classList.add('active');
-            searchSection.classList.remove('active');
-            
-            // Butonları vurgula
-            exploreBtn.style.background = "rgba(74, 74, 255, 0.4)";
-            exploreBtn.style.borderColor = "#4a4aff";
-            searchBtn.style.background = "rgba(74, 74, 255, 0.2)";
-            searchBtn.style.borderColor = "transparent";
+                // Burada kategoriye göre gönderi filtreleme yapılabilir
+            });
         });
 
-        // Search butonu tıklama
-        searchBtn.addEventListener('click', function() {
-            searchSection.classList.add('active');
-            postsSection.classList.remove('active');
-            
-            // Butonları vurgula
-            searchBtn.style.background = "rgba(74, 74, 255, 0.4)";
-            searchBtn.style.borderColor = "#4a4aff";
-            exploreBtn.style.background = "rgba(74, 74, 255, 0.2)";
-            exploreBtn.style.borderColor = "transparent";
-            
-            // Tüm hesapları göster
-            displayAccounts(sampleAccounts);
+        // Arama kutusu
+        document.querySelector('.arama-input').addEventListener('input', function (e) {
+            console.log('Aranan:', e.target.value);
         });
 
-        // Arama çubuğu için dinleyici
-        accountSearch.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            
-            if (searchTerm.length > 0) {
-                const filteredAccounts = sampleAccounts.filter(account => 
-                    account.name.toLowerCase().includes(searchTerm) || 
-                    account.username.toLowerCase().includes(searchTerm) ||
-                    account.bio.toLowerCase().includes(searchTerm)
-                );
-                displayAccounts(filteredAccounts);
-            } else {
-                displayAccounts(sampleAccounts);
+        // Yeni gönderi butonu
+        document.querySelector('.gonderi-btn').addEventListener('click', function () {
+            const input = document.querySelector('.gonderi-input');
+            if (input.value.trim()) {
+                alert('Gönderi paylaşıldı! (Demo modunda)');
+                input.value = '';
             }
         });
 
-        // Hesapları görüntüleme fonksiyonu
-        function displayAccounts(accounts) {
-            if (accounts.length === 0) {
-                searchResults.innerHTML = `
-                    <div style="text-align: center; padding: 30px; color: #8888cc;">
-                        <i class="fas fa-user-slash" style="font-size: 48px; margin-bottom: 15px;"></i>
-                        <p>Hiç hesap bulunamadı.</p>
-                    </div>
-                `;
-                return;
+        // Enter tuşu ile gönderi paylaşma
+        document.querySelector('.gonderi-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter' && this.value.trim()) {
+                alert('Gönderi paylaşıldı! (Demo modunda)');
+                this.value = '';
             }
+        });
 
-            searchResults.innerHTML = accounts.map((account, index) => `
-                <div class="account-card">
-                    <div class="account-avatar">${account.name.charAt(0)}</div>
-                    <div class="account-info">
-                        <h4>${account.name}</h4>
-                        <p>${account.username}</p>
-                        <p>${account.bio}</p>
-                    </div>
-                    <button class="follow-btn">Takip Et</button>
-                </div>
-            `).join('');
-        }
+        // Takip butonları
+        document.querySelectorAll('.takip-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                if (this.textContent === '+') {
+                    this.textContent = '✓';
+                    this.style.background = '#10b981';
+                } else {
+                    this.textContent = '+';
+                    this.style.background = '#3b82f6';
+                }
+            });
+        });
 
-        // Sayfa yüklendiğinde Explore bölümünü göster
-        window.onload = function() {
-            exploreBtn.click();
-        };
+        // Beğeni butonları
+        document.querySelectorAll('.gonderi-etkilesim i.fa-heart').forEach(heart => {
+            heart.addEventListener('click', function () {
+                const parent = this.closest('.gonderi-etkilesim').querySelector('span:first-child');
+                const count = parent.textContent.match(/\d+(\.\d+)?[k]?/)[0];
+
+                if (this.classList.contains('far')) {
+                    this.classList.remove('far');
+                    this.classList.add('fas');
+                    this.style.color = '#ef4444';
+
+                    // Sayıyı güncelle (demo)
+                    if (count.includes('k')) {
+                        const num = parseFloat(count) + 0.1;
+                        parent.innerHTML = `<i class="fas fa-heart" style="color:#ef4444"></i> ${num.toFixed(1)}k`;
+                    } else {
+                        parent.innerHTML = `<i class="fas fa-heart" style="color:#ef4444"></i> ${parseInt(count) + 1}`;
+                    }
+                } else {
+                    this.classList.remove('fas');
+                    this.classList.add('far');
+                    this.style.color = '';
+
+                    // Sayıyı eski haline döndür (demo)
+                    if (count.includes('k')) {
+                        const num = parseFloat(count) - 0.1;
+                        parent.innerHTML = `<i class="far fa-heart"></i> ${num.toFixed(1)}k`;
+                    } else {
+                        parent.innerHTML = `<i class="far fa-heart"></i> ${parseInt(count) - 1}`;
+                    }
+                }
+            });
+        });
     </script>
+
+
+    <script src="dashScript.js"></script>
 </body>
+
 </html>
