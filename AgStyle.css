@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #210a2f;
+    background-color: #0a0c1a;
     color: #e6f1ff;
     line-height: 1.6;
     min-height: 100vh;
@@ -14,7 +14,7 @@ body {
     position: relative;
 }
 
-/* CSS-only yıldız efekti */
+/* Yıldız efekti */
 body::before {
     content: '';
     position: absolute;
@@ -22,46 +22,458 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-        /* Yıldızlar */
-        radial-gradient(1.5px 1.5px at 5% 10%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
-        radial-gradient(1px 1px at 15% 25%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
-        radial-gradient(2px 2px at 25% 40%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
-        radial-gradient(1px 1px at 35% 15%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 45% 60%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
-        radial-gradient(2px 2px at 55% 30%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
-        radial-gradient(1px 1px at 65% 75%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 75% 45%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
-        radial-gradient(2px 2px at 85% 20%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
-        radial-gradient(1px 1px at 95% 55%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 10% 85%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
-        radial-gradient(2px 2px at 20% 65%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
-        radial-gradient(1px 1px at 30% 95%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 40% 35%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
-        radial-gradient(2px 2px at 50% 80%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
-        radial-gradient(1px 1px at 60% 50%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 70% 90%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
-        radial-gradient(2px 2px at 80% 70%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
-        radial-gradient(1px 1px at 90% 25%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
-
-        /* Mevcut gradient'leriniz */
-        radial-gradient(circle at 10% 20%, rgba(28, 58, 115, 0.2) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(28, 58, 115, 0.2) 0%, transparent 20%);
-
+    background: 
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.8) 50%, transparent 100%),
+        radial-gradient(1px 1px at 20% 40%, rgba(255,255,255,0.6) 50%, transparent 100%),
+        radial-gradient(3px 3px at 30% 60%, rgba(255,255,255,0.5) 50%, transparent 100%),
+        radial-gradient(2px 2px at 50% 30%, rgba(255,255,255,0.7) 50%, transparent 100%),
+        radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.6) 50%, transparent 100%),
+        radial-gradient(2px 2px at 90% 50%, rgba(255,255,255,0.8) 50%, transparent 100%);
     background-repeat: no-repeat;
     z-index: -1;
-    opacity: 0.7;
-
-    /* Parlama animasyonu */
+    opacity: 0.5;
     animation: starPulse 8s ease-in-out infinite;
 }
 
 @keyframes starPulse {
-    0%, 100% {
-        opacity: 0.4;
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* Header */
+header {
+    background: rgba(26, 31, 56, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    border-bottom: 1px solid rgba(138, 92, 246, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.logo i {
+    color: #8b5cf6;
+    font-size: 24px;
+}
+
+/* Ana Grid */
+.main-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr 320px;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 100px auto 30px;
+    padding: 0 20px;
+}
+
+/* Ortak Kutu Stili */
+.kategori-kutu, .kutu, .gonderi-kart, .yeni-gonderi {
+    background: rgba(20, 25, 45, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(138, 92, 246, 0.15);
+    border-radius: 20px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+/* SOL SİDEBAR */
+.sidebar-left {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.kategori-baslik {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.kategori-alt {
+    font-size: 13px;
+    color: #8b8bb0;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.kategori-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.kategori-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #a0a0cc;
+}
+
+.kategori-item i {
+    width: 20px;
+    font-size: 16px;
+}
+
+.kategori-item:hover {
+    background: rgba(138, 92, 246, 0.1);
+    color: white;
+    transform: translateX(5px);
+}
+
+.kategori-item.active {
+    background: rgba(138, 92, 246, 0.2);
+    border-left: 3px solid #8b5cf6;
+    color: white;
+}
+
+/* Arama Kutusu */
+.arama-kutusu {
+    position: relative;
+    margin-top: 10px;
+}
+
+.arama-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b6b9c;
+    font-size: 14px;
+}
+
+.arama-input {
+    width: 100%;
+    padding: 14px 20px 14px 45px;
+    background: rgba(30, 35, 60, 0.6);
+    border: 1px solid rgba(138, 92, 246, 0.2);
+    border-radius: 30px;
+    color: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.arama-input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    background: rgba(30, 35, 60, 0.8);
+}
+
+/* ORTA İÇERİK */
+.orta-icerik {
+    min-height: 100vh;
+}
+
+.yeni-gonderi {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.gonderi-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+}
+
+.gonderi-input {
+    flex: 1;
+    padding: 12px 18px;
+    background: rgba(30, 35, 60, 0.6);
+    border: 1px solid rgba(138, 92, 246, 0.2);
+    border-radius: 30px;
+    color: white;
+    font-size: 14px;
+}
+
+.gonderi-input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+}
+
+.gonderi-btn {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gonderi-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.gonderi-btn i {
+    font-size: 18px;
+}
+
+/* Gönderi Kartları */
+.gonderiler-akisi {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gonderi-kart {
+    padding: 20px;
+}
+
+.gonderi-kart:hover {
+    border-color: rgba(138, 92, 246, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.gonderi-baslik {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.kullanici-bilgi {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.kullanici-ad {
+    font-weight: 700;
+    color: white;
+}
+
+.kullanici-etiket {
+    font-size: 13px;
+    color: #8b8bb0;
+}
+
+.gonderi-zaman {
+    font-size: 12px;
+    color: #6b6b9c;
+}
+
+.gonderi-icerik h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.gonderi-icerik p {
+    color: #b0b0d0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.gonderi-gorsel {
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.gonderi-gorsel img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gonderi-gorsel:hover img {
+    transform: scale(1.05);
+}
+
+.gonderi-etkilesim {
+    display: flex;
+    gap: 30px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(138, 92, 246, 0.1);
+}
+
+.gonderi-etkilesim span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8b8bb0;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.gonderi-etkilesim span:hover {
+    color: #8b5cf6;
+}
+
+/* SAĞ SİDEBAR */
+.sidebar-right {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.kutu-baslik {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(138, 92, 246, 0.2);
+}
+
+/* Hesap Listesi */
+.hesap-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.hesap-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hesap-item.oneri {
+    justify-content: space-between;
+}
+
+.hesap-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: white;
+}
+
+.hesap-bilgi {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.hesap-ad {
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+}
+
+.hesap-etiket {
+    font-size: 12px;
+    color: #8b8bb0;
+}
+
+.takip-btn {
+    width: 30px;
+    height: 30px;
+    background: #3b82f6;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.takip-btn:hover {
+    background: #10b981;
+    transform: scale(1.1);
+}
+
+/* Trend Konular */
+.trend-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.trend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.trend-sira {
+    width: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #8b5cf6;
+}
+
+.trend-konu {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+.trend-sayi {
+    font-size: 12px;
+    color: #8b8bb0;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .main-grid {
+        grid-template-columns: 250px 1fr 280px;
     }
-    50% {
-        opacity: 0.8;
+}
+
+@media (max-width: 992px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .sidebar-left, .sidebar-right {
+        position: static;
+    }
+    
+    .kategori-liste {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .kategori-item {
+        flex: 1;
+        min-width: 100px;
     }
 }
 
@@ -386,5 +798,423 @@ header {
 
     .main-content {
         padding: 20px;
+    }
+}
+
+
+
+/* DROP DOWN MENU */
+/* ===== ELFNATUR GALAKTİK DROPDOWN MENU - ÜST SOL KÖŞE ===== */
+/* ===== ELFNATUR SATÜRN DROPDOWN MENU ===== */
+.galaktik-dropdown {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999999;
+    width: auto;
+    height: auto;
+}
+
+/* ===== SATÜRN LOGO ===== */
+.saturn-logo {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Gezegen */
+.saturn-gezegen {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.saturn-gezegen i {
+    font-size: 50px;
+    color: #e2d4b7;
+    filter: drop-shadow(0 0 15px rgba(226, 212, 183, 0.5));
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+/* Halka */
+.saturn-halka {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(15deg);
+    width: 65px;
+    height: 22px;
+    border: 2px solid rgba(200, 180, 140, 0.5);
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    box-shadow: 0 0 10px rgba(226, 212, 183, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Elfnatur Yazısı - ALTTA */
+.elfnatur-yazi {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: white;
+    text-shadow: 0 0 10px rgba(226, 212, 183, 0.7);
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Hover Efekti */
+.saturn-logo:hover .saturn-gezegen i {
+    color: #f1e6d0;
+    filter: drop-shadow(0 0 20px rgba(241, 230, 208, 0.8));
+    transform: scale(1.1);
+}
+
+.saturn-logo:hover .saturn-halka {
+    width: 70px;
+    height: 24px;
+    border-color: rgba(241, 230, 208, 0.7);
+    transform: translate(-50%, -50%) rotate(25deg);
+}
+
+/* Aktif Durum (Dropdown Açıkken) */
+.saturn-logo.active .saturn-gezegen i {
+    color: #ffd700;
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
+    animation: saturnTitres 0.5s ease;
+}
+
+.saturn-logo.active .saturn-halka {
+    border-color: rgba(255, 215, 0, 0.7);
+    animation: halkaDonus 0.8s ease;
+}
+
+.saturn-logo.active .elfnatur-yazi {
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    letter-spacing: 6px;
+}
+
+/* ===== DROPDOWN MENÜ İÇERİĞİ ===== */
+.dropdown-icerik {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 15px);
+    transform: scale(0.95);
+    transform-origin: top left;
+    width: 320px;
+    background: rgba(15, 20, 35, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(226, 212, 183, 0.2);
+    border-radius: 20px;
+    padding: 22px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+}
+
+.galaktik-dropdown.open .dropdown-icerik {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/* ===== KULLANICI BİLGİSİ ===== */
+.menu-kullanici {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(226, 212, 183, 0.2);
+}
+
+.kullanici-avatar {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #e2d4b7, #c0b09c);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #1a1e2c;
+}
+
+.kullanici-bilgi {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.kullanici-ad {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.kullanici-email {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.kullanici-vip {
+    padding: 4px 12px;
+    background: rgba(226, 212, 183, 0.2);
+    border: 1px solid rgba(226, 212, 183, 0.4);
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #e2d4b7;
+    letter-spacing: 1px;
+}
+
+/* ===== MENÜ ÖĞELERİ ===== */
+.menu-ogeler {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 18px;
+}
+
+.menu-oge {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(226, 212, 183, 0.08);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.menu-oge:hover {
+    background: rgba(226, 212, 183, 0.08);
+    border-color: rgba(226, 212, 183, 0.2);
+    transform: translateX(4px);
+}
+
+.oge-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    background: rgba(226, 212, 183, 0.05);
+    border-radius: 8px;
+}
+
+.oge-icon i {
+    font-size: 15px;
+    color: #e2d4b7;
+}
+
+.menu-oge:hover .oge-icon i {
+    color: #ffd700;
+}
+
+.oge-yazi {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+/* VIP Öğe */
+.vip-oge {
+    border: 1px solid rgba(226, 212, 183, 0.15);
+}
+
+.oge-vip {
+    padding: 3px 10px;
+    background: rgba(226, 212, 183, 0.15);
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #e2d4b7;
+    letter-spacing: 1px;
+}
+
+/* ===== ÇIKIŞ BUTONU ===== */
+.cikis-btn {
+    width: 100%;
+    padding: 12px;
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #ef4444;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 18px;
+}
+
+.cikis-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    transform: translateY(-1px);
+}
+
+/* ===== KOORDİNAT ===== */
+.menu-koordinat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(226, 212, 183, 0.15);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+.menu-koordinat i {
+    color: #e2d4b7;
+    font-size: 10px;
+}
+
+/* ===== ANİMASYONLAR ===== */
+@keyframes saturnTitres {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.2) rotate(-5deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    75% {
+        transform: scale(1.15) rotate(-2deg);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes halkaDonus {
+    0% {
+        transform: translate(-50%, -50%) rotate(15deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(15deg);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .galaktik-dropdown {
+        top: 15px;
+        left: 15px;
+    }
+
+    .saturn-logo {
+        position: relative;
+        width: 60px;
+        /* 80px'den 60px'e düşür */
+        height: 60px;
+        /* 80px'den 60px'e düşür */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* 1. Gezegen boyutunu küçült */
+    .saturn-gezegen {
+        position: relative;
+        width: 35px;
+        /* 50px'den 35px'e düşür */
+        height: 35px;
+        /* 50px'den 35px'e düşür */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+
+    /* 2. İkon boyutunu küçült */
+    .saturn-gezegen i {
+        font-size: 35px !important;
+        /* 50px'den 35px'e düşür */
+        color: #e2d4b7 !important;
+        filter: drop-shadow(0 0 15px rgba(226, 212, 183, 0.5));
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    /* 3. Halka boyutunu küçült */
+    .saturn-halka {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(15deg);
+        width: 48px;
+        /* 65px'den 48px'e düşür */
+        height: 16px;
+        /* 22px'den 16px'e düşür */
+        border: 2px solid rgba(200, 180, 140, 0.5);
+        border-radius: 50%;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        box-shadow: 0 0 10px rgba(226, 212, 183, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    /* 4. Hover'da halka boyutu */
+    .saturn-logo:hover .saturn-halka {
+        width: 52px;
+        /* 70px'den 52px'e düşür */
+        height: 18px;
+        /* 24px'den 18px'e düşür */
+        border-color: rgba(241, 230, 208, 0.7);
+        transform: translate(-50%, -50%) rotate(25deg);
+    }
+
+    .dropdown-icerik {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .galaktik-dropdown.open .dropdown-icerik {
+        transform: translate(-50%, -50%) scale(1);
     }
 }
