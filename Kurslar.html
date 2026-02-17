@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yıldız Akademisi - Elfnatur</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #0a0c1a;
+            color: #e6f1ff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Yıldız efekti */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(2px 2px at 10% 20%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+                radial-gradient(1px 1px at 20% 40%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+                radial-gradient(3px 3px at 30% 60%, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
+                radial-gradient(2px 2px at 50% 30%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+                radial-gradient(1px 1px at 70% 80%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+                radial-gradient(2px 2px at 90% 50%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+            background-repeat: no-repeat;
+            z-index: -1;
+            opacity: 0.5;
+            animation: starPulse 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes starPulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        /* DROP DOWN MENU */
+        /* ===== ELFNATUR GALAKTİK DROPDOWN MENU - ÜST SOL KÖŞE ===== */
+        /* ===== ELFNATUR SATÜRN DROPDOWN MENU ===== */
+        .galaktik-dropdown {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999999;
+            width: auto;
+            height: auto;
+        }
+
+        /* ===== SATÜRN LOGO ===== */
+        .saturn-logo {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Gezegen */
+        .saturn-gezegen {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
+        .saturn-gezegen i {
+            font-size: 20px;
+            color: #e2d4b7;
+            filter: drop-shadow(0 0 15px rgba(226, 212, 183, 0.5));
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        /* Halka */
+        .saturn-halka {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(15deg);
+            width: 65px;
+            height: 22px;
+            border: 2px solid rgba(200, 180, 140, 0.5);
+            border-radius: 50%;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            box-shadow: 0 0 10px rgba(226, 212, 183, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Elfnatur Yazısı - ALTTA */
+        .elfnatur-yazi {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: white;
+            text-shadow: 0 0 10px rgba(226, 212, 183, 0.7);
+            font-family: 'Segoe UI', sans-serif;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover Efekti */
+        .saturn-logo:hover .saturn-gezegen i {
+            color: #f1e6d0;
+            filter: drop-shadow(0 0 20px rgba(241, 230, 208, 0.8));
+            transform: scale(1.1);
+        }
+
+        .saturn-logo:hover .saturn-halka {
+            width: 70px;
+            height: 24px;
+            border-color: rgba(241, 230, 208, 0.7);
+            transform: translate(-50%, -50%) rotate(25deg);
+        }
+
+        /* Aktif Durum (Dropdown Açıkken) */
+        .saturn-logo.active .saturn-gezegen i {
+            color: #ffd700;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
+            animation: saturnTitres 0.5s ease;
+        }
+
+        .saturn-logo.active .saturn-halka {
+            border-color: rgba(255, 215, 0, 0.7);
+            animation: halkaDonus 0.8s ease;
+        }
+
+        .saturn-logo.active .elfnatur-yazi {
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            letter-spacing: 6px;
+        }
+
+        /* ===== DROPDOWN MENÜ İÇERİĞİ ===== */
+        .dropdown-icerik {
+            position: absolute;
+            top: 0;
+            left: calc(100% + 15px);
+            transform: scale(0.95);
+            transform-origin: top left;
+            width: 320px;
+            background: rgba(15, 20, 35, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(226, 212, 183, 0.2);
+            border-radius: 20px;
+            padding: 22px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+        }
+
+        .galaktik-dropdown.open .dropdown-icerik {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        /* ===== KULLANICI BİLGİSİ ===== */
+        .menu-kullanici {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(226, 212, 183, 0.2);
+        }
+
+        .kullanici-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #e2d4b7, #c0b09c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #1a1e2c;
+        }
+
+        .kullanici-bilgi {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .kullanici-ad {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .kullanici-email {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .kullanici-vip {
+            padding: 4px 12px;
+            background: rgba(226, 212, 183, 0.2);
+            border: 1px solid rgba(226, 212, 183, 0.4);
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 700;
+            color: #e2d4b7;
+            letter-spacing: 1px;
+        }
+
+        /* ===== MENÜ ÖĞELERİ ===== */
+        .menu-ogeler {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 18px;
+        }
+
+        .menu-oge {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(226, 212, 183, 0.08);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .menu-oge:hover {
+            background: rgba(226, 212, 183, 0.08);
+            border-color: rgba(226, 212, 183, 0.2);
+            transform: translateX(4px);
+        }
+
+        .oge-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            background: rgba(226, 212, 183, 0.05);
+            border-radius: 8px;
+        }
+
+        .oge-icon i {
+            font-size: 15px;
+            color: #e2d4b7;
+        }
+
+        .menu-oge:hover .oge-icon i {
+            color: #ffd700;
+        }
+
+        .oge-yazi {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+        }
+
+        /* VIP Öğe */
+        .vip-oge {
+            border: 1px solid rgba(226, 212, 183, 0.15);
+        }
+
+        .oge-vip {
+            padding: 3px 10px;
+            background: rgba(226, 212, 183, 0.15);
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            color: #e2d4b7;
+            letter-spacing: 1px;
+        }
+
+        /* ===== ÇIKIŞ BUTONU ===== */
+        .cikis-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #ef4444;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 18px;
+        }
+
+        .cikis-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* ===== KOORDİNAT ===== */
+        .menu-koordinat {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(226, 212, 183, 0.15);
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .menu-koordinat i {
+            color: #e2d4b7;
+            font-size: 10px;
+        }
+
+        /* ===== ANİMASYONLAR ===== */
+        @keyframes saturnTitres {
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.2) rotate(-5deg);
+            }
+
+            50% {
+                transform: scale(1.1) rotate(5deg);
+            }
+
+            75% {
+                transform: scale(1.15) rotate(-2deg);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes halkaDonus {
+            0% {
+                transform: translate(-50%, -50%) rotate(15deg);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(15deg);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .galaktik-dropdown {
+                top: 15px;
+                left: 15px;
+            }
+
+            .saturn-logo {
+                position: relative;
+                width: 60px;
+                /* 80px'den 60px'e düşür */
+                height: 60px;
+                /* 80px'den 60px'e düşür */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            /* 1. Gezegen boyutunu küçült */
+            .saturn-gezegen {
+                position: relative;
+                width: 15px;
+                /* 50px'den 35px'e düşür */
+                height: 15px;
+                /* 50px'den 35px'e düşür */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 5px;
+            }
+
+            /* 2. İkon boyutunu küçült */
+            .saturn-gezegen i {
+                font-size: 5px;
+                /* 50px'den 35px'e düşür */
+                color: #e2d4b7;
+                filter: drop-shadow(0 0 15px rgba(226, 212, 183, 0.5));
+                position: relative;
+                z-index: 2;
+                transition: all 0.3s ease;
+            }
+
+            /* 3. Halka boyutunu küçült */
+            .saturn-halka {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(15deg);
+                width: 48px;
+                /* 65px'den 48px'e düşür */
+                height: 16px;
+                /* 22px'den 16px'e düşür */
+                border: 2px solid rgba(200, 180, 140, 0.5);
+                border-radius: 50%;
+                border-top-color: transparent;
+                border-bottom-color: transparent;
+                box-shadow: 0 0 10px rgba(226, 212, 183, 0.3);
+                transition: all 0.3s ease;
+            }
+
+            /* 4. Hover'da halka boyutu */
+            .saturn-logo:hover .saturn-halka {
+                width: 52px;
+                /* 70px'den 52px'e düşür */
+                height: 18px;
+                /* 24px'den 18px'e düşür */
+                border-color: rgba(241, 230, 208, 0.7);
+                transform: translate(-50%, -50%) rotate(25deg);
+            }
+
+            .dropdown-icerik {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.9);
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .galaktik-dropdown.open .dropdown-icerik {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* ===== ANA İÇERİK ===== */
+        .main-container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+
+        /* Akademi Başlığı */
+        .akademi-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .akademi-baslik {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e2d4b7, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .akademi-alt {
+            font-size: 16px;
+            color: #a0a0cc;
+        }
+
+        /* Kurs Kategorileri */
+        .kategori-secici {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .kategori-tab {
+            padding: 12px 30px;
+            background: rgba(20, 25, 45, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 92, 246, 0.2);
+            border-radius: 40px;
+            color: #a0a0cc;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .kategori-tab.active {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .kategori-tab:hover {
+            background: rgba(138, 92, 246, 0.2);
+            color: white;
+        }
+
+        /* Kurs Grid */
+        .kurs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Kurs Kartı */
+        .kurs-card {
+            background: rgba(20, 25, 45, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 92, 246, 0.15);
+            border-radius: 24px;
+            padding: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kurs-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .kurs-card:hover::before {
+            left: 100%;
+        }
+
+        .kurs-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(138, 92, 246, 0.4);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seviye Etiketi */
+        .kurs-seviye {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .seviye-baslangic {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .seviye-orta {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .seviye-ileri {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Puan */
+        .kurs-puan {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .puan-yildiz {
+            color: #ffd700;
+            font-size: 14px;
+        }
+
+        .puan-deger {
+            font-weight: 700;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .puan-sayi {
+            font-size: 13px;
+            color: #a0a0cc;
+        }
+
+        /* Kurs Başlık */
+        .kurs-baslik {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        /* Eğitmen */
+        .kurs-egitmen {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #a0a0cc;
+            font-size: 14px;
+        }
+
+        .kurs-egitmen i {
+            color: #8b5cf6;
+        }
+
+        /* Kurs Bilgileri */
+        .kurs-bilgiler {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-top: 1px solid rgba(138, 92, 246, 0.2);
+            border-bottom: 1px solid rgba(138, 92, 246, 0.2);
+        }
+
+        .kurs-sure,
+        .kurs-fiyat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .kurs-sure i,
+        .kurs-fiyat i {
+            color: #8b5cf6;
+        }
+
+        .sertifika-badge {
+            margin-left: auto;
+            padding: 4px 12px;
+            background: rgba(138, 92, 246, 0.2);
+            border: 1px solid rgba(138, 92, 246, 0.4);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #8b5cf6;
+        }
+
+        /* Derse Başla Butonu */
+        .derse-basla {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .derse-basla:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Kurs Açıklaması */
+        .kurs-aciklama {
+            font-size: 13px;
+            color: #a0a0cc;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .akademi-baslik {
+                font-size: 36px;
+            }
+
+            .kurs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kategori-secici {
+                flex-wrap: wrap;
+            }
+
+            .kategori-tab {
+                flex: 1;
+                min-width: 100px;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== ELFNATUR SATÜRN DROPDOWN MENU ===== -->
+    <!-- ===== ELFNATUR SATÜRN DROPDOWN MENU ===== -->
+    <div class="galaktik-dropdown">
+        <!-- Satürn Logo - Tıklandığında menü açılır -->
+        <div class="saturn-logo" id="saturnMenuBtn">
+            <div class="saturn-gezegen">
+                <i class="fas fa-globe"></i>
+                <div class="saturn-halka"></div>
+            </div>
+            <span class="elfnatur-yazi">ELFNATUR</span>
+        </div>
+
+        <!-- Dropdown Menü İçeriği -->
+        <div class="dropdown-icerik" id="dropdownMenu">
+            <!-- Kullanıcı Bilgisi -->
+            <div class="menu-kullanici">
+                <div class="kullanici-avatar">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <div class="kullanici-bilgi">
+                    <span class="kullanici-ad">Uzay Elçisi</span>
+                    <span class="kullanici-email">demo@elfnatur.com</span>
+                </div>
+                <span class="kullanici-vip">VIP</span>
+            </div>
+
+            <!-- Menü Öğeleri -->
+            <div class="menu-ogeler">
+                <div class="menu-oge" data-sekme="ana" onclick="window.location.href='dashboard.html';"
+                    style="cursor: pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <span class="oge-yazi">Ana Uzay ve Planlama</span>
+                </div>
+
+                <div class="menu-oge vip-oge" data-sekme="kurs" onclick="window.location.href='Kurslar.html';"
+                    style="cursor:pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <span class="oge-yazi">Kurslar</span>
+                    <span class="oge-vip">VIP</span>
+                </div>
+
+                <div class="menu-oge" data-sekme="ana" onclick="window.location.href='GalaktikAg.html';"
+                    style="cursor: pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <span class="oge-yazi">Galaksi</span>
+                </div>
+
+                <div class="menu-oge vip-oge" data-sekme="profil">
+                    <div class="oge-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <span class="oge-yazi">Profil</span>
+                    <span class="oge-vip">VIP</span>
+                </div>
+                <div class="menu-oge" data-sekme="iletisim">
+                    <div class="oge-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span class="oge-yazi">İletişim</span>
+                </div>
+            </div>
+
+            <!-- Çıkış Butonu -->
+            <button class="cikis-btn" id="menuLogoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Çıkış Yap</span>
+            </button>
+
+            <!-- Uzay Koordinatları -->
+            <div class="menu-koordinat">
+                <i class="fas fa-map-pin"></i>
+                <span id="menuKoordinat">Satürn • Halka Sektörü 95</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ANA İÇERİK - YILDIZ AKADEMİSİ -->
+    <div class="main-container">
+        <div class="akademi-header">
+            <h1 class="akademi-baslik">Yıldız Akademisi</h1>
+            <p class="akademi-alt">Kendini geliştir, yeni yetenekler kazan ve sertifikanı al.</p>
+        </div>
+
+        <!-- Kategori Seçici -->
+        <div class="kategori-secici">
+            <div class="kategori-tab active">Tümü</div>
+            <div class="kategori-tab">Başlangıç</div>
+            <div class="kategori-tab">Orta</div>
+            <div class="kategori-tab">İleri</div>
+            <div class="kategori-tab">Sertifikalı</div>
+        </div>
+
+        <!-- Kurs Grid -->
+        <div class="kurs-grid">
+            <!-- Kurs 1 - Başlangıç -->
+            <div class="kurs-card">
+                <span class="kurs-seviye seviye-baslangic">Başlangıç</span>
+                <div class="kurs-puan">
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star-half-alt puan-yildiz"></i>
+                    <span class="puan-deger">4.9</span>
+                    <span class="puan-sayi">(2.3k)</span>
+                </div>
+                <h3 class="kurs-baslik">Zaman Yönetimi Ustalığı</h3>
+                <div class="kurs-egitmen">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Prof. Dr. Ali Veli</span>
+                </div>
+                <p class="kurs-aciklama">Etkili zaman yönetimi teknikleri, önceliklendirme ve üretkenlik stratejileri.
+                </p>
+                <div class="kurs-bilgiler">
+                    <div class="kurs-sure">
+                        <i class="fas fa-clock"></i>
+                        <span>4 Saat</span>
+                    </div>
+                    <div class="kurs-fiyat">
+                        <i class="fas fa-tag"></i>
+                        <span>1200 ₺</span>
+                    </div>
+                    <span class="sertifika-badge">Sertifikalı</span>
+                </div>
+                <a href="#" class="derse-basla">
+                    <i class="fas fa-play-circle"></i> Derse Başla
+                </a>
+            </div>
+
+            <!-- Kurs 2 - Orta -->
+            <div class="kurs-card">
+                <span class="kurs-seviye seviye-orta">Orta</span>
+                <div class="kurs-puan">
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <span class="puan-deger">4.8</span>
+                    <span class="puan-sayi">(1.8k)</span>
+                </div>
+                <h3 class="kurs-baslik">Kişisel Gelişim ve Motivasyon</h3>
+                <div class="kurs-egitmen">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Zeynep Yılmaz</span>
+                </div>
+                <p class="kurs-aciklama">Motivasyon teknikleri, hedef belirleme ve kişisel başarı stratejileri.</p>
+                <div class="kurs-bilgiler">
+                    <div class="kurs-sure">
+                        <i class="fas fa-clock"></i>
+                        <span>6 Saat</span>
+                    </div>
+                    <div class="kurs-fiyat">
+                        <i class="fas fa-tag"></i>
+                        <span>850 ₺</span>
+                    </div>
+                    <span class="sertifika-badge">Sertifikalı</span>
+                </div>
+                <a href="#" class="derse-basla">
+                    <i class="fas fa-play-circle"></i> Derse Başla
+                </a>
+            </div>
+
+            <!-- Kurs 3 - İleri -->
+            <div class="kurs-card">
+                <span class="kurs-seviye seviye-ileri">İleri</span>
+                <div class="kurs-puan">
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <span class="puan-deger">5.0</span>
+                    <span class="puan-sayi">(956)</span>
+                </div>
+                <h3 class="kurs-baslik">Akademik Yazım Teknikleri</h3>
+                <div class="kurs-egitmen">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Doç. Dr. Ayşe Kaya</span>
+                </div>
+                <p class="kurs-aciklama">Akademik makale yazımı, tez hazırlama ve bilimsel yayın süreçleri.</p>
+                <div class="kurs-bilgiler">
+                    <div class="kurs-sure">
+                        <i class="fas fa-clock"></i>
+                        <span>12 Saat</span>
+                    </div>
+                    <div class="kurs-fiyat">
+                        <i class="fas fa-tag"></i>
+                        <span>400 ₺</span>
+                    </div>
+                    <span class="sertifika-badge">Sertifikalı</span>
+                </div>
+                <a href="#" class="derse-basla">
+                    <i class="fas fa-play-circle"></i> Derse Başla
+                </a>
+            </div>
+
+            <!-- Kurs 4 - Uzay Bilimleri -->
+            <div class="kurs-card">
+                <span class="kurs-seviye seviye-baslangic">Başlangıç</span>
+                <div class="kurs-puan">
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <span class="puan-deger">4.7</span>
+                    <span class="puan-sayi">(1.2k)</span>
+                </div>
+                <h3 class="kurs-baslik">Uzay Bilimlerine Giriş</h3>
+                <div class="kurs-egitmen">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Prof. Dr. Mehmet Yıldız</span>
+                </div>
+                <p class="kurs-aciklama">Astronomi, gezegen bilimi ve uzay keşifleri hakkında temel bilgiler.</p>
+                <div class="kurs-bilgiler">
+                    <div class="kurs-sure">
+                        <i class="fas fa-clock"></i>
+                        <span>8 Saat</span>
+                    </div>
+                    <div class="kurs-fiyat">
+                        <i class="fas fa-tag"></i>
+                        <span>950 ₺</span>
+                    </div>
+                    <span class="sertifika-badge">Sertifikalı</span>
+                </div>
+                <a href="#" class="derse-basla">
+                    <i class="fas fa-play-circle"></i> Derse Başla
+                </a>
+            </div>
+
+            <!-- Kurs 5 - Yapay Zeka -->
+            <div class="kurs-card">
+                <span class="kurs-seviye seviye-orta">Orta</span>
+                <div class="kurs-puan">
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <span class="puan-deger">4.9</span>
+                    <span class="puan-sayi">(3.1k)</span>
+                </div>
+                <h3 class="kurs-baslik">Yapay Zeka ve Gelecek</h3>
+                <div class="kurs-egitmen">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Prof. Dr. Caner Tekin</span>
+                </div>
+                <p class="kurs-aciklama">Yapay zeka temelleri, makine öğrenmesi ve geleceğin teknolojileri.</p>
+                <div class="kurs-bilgiler">
+                    <div class="kurs-sure">
+                        <i class="fas fa-clock"></i>
+                        <span>10 Saat</span>
+                    </div>
+                    <div class="kurs-fiyat">
+                        <i class="fas fa-tag"></i>
+                        <span>1500 ₺</span>
+                    </div>
+                    <span class="sertifika-badge">Sertifikalı</span>
+                </div>
+                <a href="#" class="derse-basla">
+                    <i class="fas fa-play-circle"></i> Derse Başla
+                </a>
+            </div>
+
+            <!-- Kurs 6 - Liderlik -->
+            <div class="kurs-card">
+                <span class="kurs-seviye seviye-ileri">İleri</span>
+                <div class="kurs-puan">
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star puan-yildiz"></i>
+                    <i class="fas fa-star-half-alt puan-yildiz"></i>
+                    <span class="puan-deger">4.8</span>
+                    <span class="puan-sayi">(876)</span>
+                </div>
+                <h3 class="kurs-baslik">Stratejik Liderlik</h3>
+                <div class="kurs-egitmen">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Dr. Elif Yıldırım</span>
+                </div>
+                <p class="kurs-aciklama">Liderlik becerileri, takım yönetimi ve stratejik karar alma.</p>
+                <div class="kurs-bilgiler">
+                    <div class="kurs-sure">
+                        <i class="fas fa-clock"></i>
+                        <span>14 Saat</span>
+                    </div>
+                    <div class="kurs-fiyat">
+                        <i class="fas fa-tag"></i>
+                        <span>1800 ₺</span>
+                    </div>
+                    <span class="sertifika-badge">Sertifikalı</span>
+                </div>
+                <a href="#" class="derse-basla">
+                    <i class="fas fa-play-circle"></i> Derse Başla
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dropdown Menu
+        document.addEventListener('DOMContentLoaded', function () {
+            const saturnBtn = document.getElementById('saturnMenuBtn');
+            const dropdown = document.querySelector('.galaktik-dropdown');
+
+            if (saturnBtn && dropdown) {
+                saturnBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                    dropdown.classList.toggle('open');
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!dropdown.contains(e.target) && !saturnBtn.contains(e.target)) {
+                        saturnBtn.classList.remove('active');
+                        dropdown.classList.remove('open');
+                    }
+                });
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        saturnBtn.classList.remove('active');
+                        dropdown.classList.remove('open');
+                    }
+                });
+            }
+
+            // Çıkış butonu
+            const cikisBtn = document.getElementById('menuLogoutBtn');
+            if (cikisBtn) {
+                cikisBtn.addEventListener('click', function () {
+                    if (confirm('Çıkış yapmak istediğinize emin misiniz?')) {
+                        window.location.href = 'dashboard.html';
+                    }
+                });
+            }
+
+            // Koordinatları güncelle
+            const koordinatEl = document.getElementById('menuKoordinat');
+            if (koordinatEl) {
+                setInterval(() => {
+                    const sayi = Math.floor(Math.random() * 100);
+                    koordinatEl.innerHTML = `Satürn • Halka Sektörü ${sayi}`;
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+
+</html>
