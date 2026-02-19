@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uzay Elçisi - Elfnatur</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0a0c1a;
+            color: #e6f1ff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Yıldız efekti */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.8) 50%, transparent 100%),
+                radial-gradient(1px 1px at 20% 40%, rgba(255,255,255,0.6) 50%, transparent 100%),
+                radial-gradient(3px 3px at 30% 60%, rgba(255,255,255,0.5) 50%, transparent 100%),
+                radial-gradient(2px 2px at 50% 30%, rgba(255,255,255,0.7) 50%, transparent 100%),
+                radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.6) 50%, transparent 100%),
+                radial-gradient(2px 2px at 90% 50%, rgba(255,255,255,0.8) 50%, transparent 100%);
+            background-repeat: no-repeat;
+            z-index: -1;
+            opacity: 0.5;
+            animation: starPulse 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes starPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* ===== DROPDOWN MENU (Aynı CSS'in) ===== */
+        /* ===== ELFNATUR SATÜRN DROPDOWN MENU ===== */
+        .galaktik-dropdown {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999999;
+            width: auto;
+            height: auto;
+        }
+
+        /* ===== SATÜRN LOGO ===== */
+        .saturn-logo {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Gezegen */
+        .saturn-gezegen {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
+        .saturn-gezegen i {
+            font-size: 20px;
+            color: #e2d4b7;
+            filter: drop-shadow(0 0 15px rgba(226, 212, 183, 0.5));
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        /* Halka */
+        .saturn-halka {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(15deg);
+            width: 65px;
+            height: 22px;
+            border: 2px solid rgba(200, 180, 140, 0.5);
+            border-radius: 50%;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            box-shadow: 0 0 10px rgba(226, 212, 183, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Elfnatur Yazısı - ALTTA */
+        .elfnatur-yazi {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: white;
+            text-shadow: 0 0 10px rgba(226, 212, 183, 0.7);
+            font-family: 'Segoe UI', sans-serif;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover Efekti */
+        .saturn-logo:hover .saturn-gezegen i {
+            color: #f1e6d0;
+            filter: drop-shadow(0 0 20px rgba(241, 230, 208, 0.8));
+            transform: scale(1.1);
+        }
+
+        .saturn-logo:hover .saturn-halka {
+            width: 70px;
+            height: 24px;
+            border-color: rgba(241, 230, 208, 0.7);
+            transform: translate(-50%, -50%) rotate(25deg);
+        }
+
+        /* Aktif Durum (Dropdown Açıkken) */
+        .saturn-logo.active .saturn-gezegen i {
+            color: #ffd700;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
+            animation: saturnTitres 0.5s ease;
+        }
+
+        .saturn-logo.active .saturn-halka {
+            border-color: rgba(255, 215, 0, 0.7);
+            animation: halkaDonus 0.8s ease;
+        }
+
+        .saturn-logo.active .elfnatur-yazi {
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            letter-spacing: 6px;
+        }
+
+        /* ===== DROPDOWN MENÜ İÇERİĞİ ===== */
+        .dropdown-icerik {
+            position: absolute;
+            top: 0;
+            left: calc(100% + 15px);
+            transform: scale(0.95);
+            transform-origin: top left;
+            width: 320px;
+            background: rgba(15, 20, 35, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(226, 212, 183, 0.2);
+            border-radius: 20px;
+            padding: 22px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+        }
+
+        .galaktik-dropdown.open .dropdown-icerik {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        /* ===== KULLANICI BİLGİSİ ===== */
+        .menu-kullanici {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(226, 212, 183, 0.2);
+        }
+
+        .kullanici-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #e2d4b7, #c0b09c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #1a1e2c;
+        }
+
+        .kullanici-bilgi {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .kullanici-ad {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .kullanici-email {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .kullanici-vip {
+            padding: 4px 12px;
+            background: rgba(226, 212, 183, 0.2);
+            border: 1px solid rgba(226, 212, 183, 0.4);
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 700;
+            color: #e2d4b7;
+            letter-spacing: 1px;
+        }
+
+        /* ===== MENÜ ÖĞELERİ ===== */
+        .menu-ogeler {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 18px;
+        }
+
+        .menu-oge {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(226, 212, 183, 0.08);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .menu-oge:hover {
+            background: rgba(226, 212, 183, 0.08);
+            border-color: rgba(226, 212, 183, 0.2);
+            transform: translateX(4px);
+        }
+
+        .oge-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            background: rgba(226, 212, 183, 0.05);
+            border-radius: 8px;
+        }
+
+        .oge-icon i {
+            font-size: 15px;
+            color: #e2d4b7;
+        }
+
+        .menu-oge:hover .oge-icon i {
+            color: #ffd700;
+        }
+
+        .oge-yazi {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+        }
+
+        /* VIP Öğe */
+        .vip-oge {
+            border: 1px solid rgba(226, 212, 183, 0.15);
+        }
+
+        .oge-vip {
+            padding: 3px 10px;
+            background: rgba(226, 212, 183, 0.15);
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            color: #e2d4b7;
+            letter-spacing: 1px;
+        }
+
+        /* ===== ÇIKIŞ BUTONU ===== */
+        .cikis-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #ef4444;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 18px;
+        }
+
+        .cikis-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* ===== KOORDİNAT ===== */
+        .menu-koordinat {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(226, 212, 183, 0.15);
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .menu-koordinat i {
+            color: #e2d4b7;
+            font-size: 10px;
+        }
+
+        /* ===== ANİMASYONLAR ===== */
+        @keyframes saturnTitres {
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.2) rotate(-5deg);
+            }
+
+            50% {
+                transform: scale(1.1) rotate(5deg);
+            }
+
+            75% {
+                transform: scale(1.15) rotate(-2deg);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes halkaDonus {
+            0% {
+                transform: translate(-50%, -50%) rotate(15deg);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(15deg);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .galaktik-dropdown {
+                top: 15px;
+                left: 15px;
+            }
+
+            .saturn-logo {
+                position: relative;
+                width: 60px;
+                /* 80px'den 60px'e düşür */
+                height: 60px;
+                /* 80px'den 60px'e düşür */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            /* 1. Gezegen boyutunu küçült */
+            .saturn-gezegen {
+                position: relative;
+                width: 15px;
+                /* 50px'den 35px'e düşür */
+                height: 15px;
+                /* 50px'den 35px'e düşür */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 5px;
+            }
+
+            /* 2. İkon boyutunu küçült */
+            .saturn-gezegen i {
+                font-size: 5px;
+                /* 50px'den 35px'e düşür */
+                color: #e2d4b7;
+                filter: drop-shadow(0 0 15px rgba(226, 212, 183, 0.5));
+                position: relative;
+                z-index: 2;
+                transition: all 0.3s ease;
+            }
+
+            /* 3. Halka boyutunu küçült */
+            .saturn-halka {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(15deg);
+                width: 48px;
+                /* 65px'den 48px'e düşür */
+                height: 16px;
+                /* 22px'den 16px'e düşür */
+                border: 2px solid rgba(200, 180, 140, 0.5);
+                border-radius: 50%;
+                border-top-color: transparent;
+                border-bottom-color: transparent;
+                box-shadow: 0 0 10px rgba(226, 212, 183, 0.3);
+                transition: all 0.3s ease;
+            }
+
+            /* 4. Hover'da halka boyutu */
+            .saturn-logo:hover .saturn-halka {
+                width: 52px;
+                /* 70px'den 52px'e düşür */
+                height: 18px;
+                /* 24px'den 18px'e düşür */
+                border-color: rgba(241, 230, 208, 0.7);
+                transform: translate(-50%, -50%) rotate(25deg);
+            }
+
+            .dropdown-icerik {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.9);
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .galaktik-dropdown.open .dropdown-icerik {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* ===== PROFİL SAYFASI STİLLERİ ===== */
+        .profile-container {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+
+        /* Kapak Fotoğrafı */
+        .cover-photo {
+            height: 200px;
+            background: linear-gradient(135deg, #1a1e3a, #2a1e3a);
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(138, 92, 246, 0.2);
+        }
+
+        .cover-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="30" cy="20" r="2" fill="white" opacity="0.3"/><circle cx="70" cy="40" r="3" fill="white" opacity="0.3"/><circle cx="20" cy="60" r="1.5" fill="white" opacity="0.3"/><circle cx="80" cy="80" r="2.5" fill="white" opacity="0.3"/><circle cx="50" cy="50" r="4" fill="white" opacity="0.2"/></svg>');
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        /* Profil Bilgileri */
+        .profile-info {
+            background: rgba(20, 25, 45, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 92, 246, 0.2);
+            border-radius: 0 0 20px 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .profile-avatar-large {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: -60px;
+            left: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-header {
+            margin-left: 150px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .profile-name h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .profile-username {
+            font-size: 16px;
+            color: #8b8bb0;
+            margin-bottom: 15px;
+        }
+
+        .profile-bio {
+            font-size: 15px;
+            color: #b0b0d0;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #a0a0cc;
+            font-size: 14px;
+        }
+
+        .stat-item i {
+            color: #8b5cf6;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+        }
+
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(138, 92, 246, 0.3);
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Profil Meta */
+        .profile-meta {
+            margin-left: 150px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(138, 92, 246, 0.2);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #a0a0cc;
+            font-size: 14px;
+        }
+
+        .meta-item i {
+            color: #8b5cf6;
+            width: 20px;
+        }
+
+        /* Profil Sekmeler */
+        .profile-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(138, 92, 246, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .tab-item {
+            padding: 10px 20px;
+            color: #a0a0cc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+
+        .tab-item:hover {
+            color: white;
+            background: rgba(138, 92, 246, 0.1);
+        }
+
+        .tab-item.active {
+            color: white;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+
+        /* İçerik Alanı */
+        .content-area {
+            background: rgba(20, 25, 45, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .empty-state {
+            padding: 60px 20px;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            color: #8b5cf6;
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: #a0a0cc;
+            margin-bottom: 30px;
+        }
+
+        .add-btn {
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .add-btn i {
+            margin-right: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-avatar-large {
+                position: static;
+                margin: 0 auto 20px;
+            }
+
+            .profile-header {
+                margin-left: 0;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-meta {
+                margin-left: 0;
+                justify-content: center;
+            }
+
+            .profile-stats {
+                justify-content: center;
+            }
+
+            .profile-bio {
+                text-align: center;
+            }
+
+            .profile-actions {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .profile-tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .galaktik-dropdown {
+                top: 10px;
+                left: 10px;
+            }
+
+            .saturn-logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .saturn-gezegen {
+                width: 35px;
+                height: 35px;
+            }
+
+            .saturn-gezegen i {
+                font-size: 35px;
+            }
+
+            .saturn-halka {
+                width: 48px;
+                height: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== ELFNATUR SATÜRN DROPDOWN MENU ===== -->
+    <div class="galaktik-dropdown">
+        <div class="saturn-logo" id="saturnMenuBtn">
+            <div class="saturn-gezegen">
+                <i class="fas fa-globe"></i>
+                <div class="saturn-halka"></div>
+            </div>
+            <span class="elfnatur-yazi">ELFNATUR</span>
+        </div>
+        
+        <div class="dropdown-icerik" id="dropdownMenu">
+            <div class="menu-kullanici">
+                <div class="kullanici-avatar">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <div class="kullanici-bilgi">
+                    <span class="kullanici-ad">Uzay Elçisi</span>
+                    <span class="kullanici-email">demo@elfnatur.com</span>
+                </div>
+                <span class="kullanici-vip">VIP</span>
+            </div>
+            
+            <div class="menu-ogeler">
+                <div class="menu-oge" onclick="window.location.href='dashboard.html';" style="cursor: pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <span class="oge-yazi">Ana Uzay ve Planlama</span>
+                </div>
+                
+                <div class="menu-oge" onclick="window.location.href='GalaktikAg.html';" style="cursor: pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-galaxy"></i>
+                    </div>
+                    <span class="oge-yazi">Galaksi</span>
+                </div>
+                
+                <div class="menu-oge vip-oge" onclick="window.location.href='Kurslar.html';" style="cursor: pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <span class="oge-yazi">Kurslar</span>
+                    <span class="oge-vip">VIP</span>
+                </div>
+                
+                <div class="menu-oge" onclick="window.location.href='#';" style="cursor: pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <span class="oge-yazi">Arama</span>
+                </div>
+                
+                <div class="menu-oge" data-sekme="ana" onclick="window.location.href='Profil.html';"
+                        style="cursor: pointer;">
+                        <div class="oge-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <span class="oge-yazi">Profil</span>
+                        <span class="oge-vip">VIP</span>
+                </div>
+                
+                <div class="menu-oge" onclick="window.location.href='#';" style="cursor: pointer;">
+                    <div class="oge-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span class="oge-yazi">İletişim</span>
+                </div>
+            </div>
+            
+            <button class="cikis-btn" id="menuLogoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Çıkış Yap</span>
+            </button>
+            
+            <div class="menu-koordinat">
+                <i class="fas fa-map-pin"></i>
+                <span id="menuKoordinat">Satürn • Halka Sektörü 95</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PROFİL SAYFASI ===== -->
+    <div class="profile-container">
+        <!-- Kapak Fotoğrafı -->
+        <div class="cover-photo"></div>
+
+        <!-- Profil Bilgileri -->
+        <div class="profile-info">
+            <div class="profile-avatar-large">
+                <i class="fas fa-user-astronaut"></i>
+            </div>
+
+            <div class="profile-header">
+                <div class="profile-name">
+                    <h1>Uzay Elçisi</h1>
+                    <div class="profile-username">@uzayelcisi</div>
+                    <div class="profile-bio">
+                        Yıldızlara ulaşmak için yola çıktım. Bilim kurgu hayranı, amatör astronom ve yazılım geliştirici. 🌟 "Her an yeni bir keşiftir."
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>İstanbul</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-link"></i>
+                            <span>github.com/elfnatur</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Şubat 2026'da katıldı</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="action-btn primary">
+                        <i class="fas fa-pen"></i> Kapak Değiştir
+                    </button>
+                    <button class="action-btn secondary">
+                        <i class="fas fa-edit"></i> Profili Düzenle
+                    </button>
+                </div>
+            </div>
+
+            <!-- Profil Meta -->
+            <div class="profile-meta">
+                <div class="meta-item">
+                    <i class="fas fa-feather-alt"></i>
+                    <span>Yazılarım</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-book"></i>
+                    <span>Okuduğum Kitaplar</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-tv"></i>
+                    <span>Seyir Geçmişim</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Akademik</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-video"></i>
+                    <span>Kurslar</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sekmeler -->
+        <div class="profile-tabs">
+            <div class="tab-item active">Yazılarım</div>
+            <div class="tab-item">Okuduğum Kitaplar</div>
+            <div class="tab-item">Seyir Geçmişim</div>
+            <div class="tab-item">Akademik</div>
+            <div class="tab-item">Kurslar</div>
+        </div>
+
+        <!-- İçerik Alanı -->
+        <div class="content-area">
+            <div class="empty-state">
+                <i class="fas fa-feather-alt"></i>
+                <h3>Henüz hiç yazı paylaşmadın.</h3>
+                <p>İlk yazını paylaşarak uzay maceranı anlatmaya başla!</p>
+                <button class="add-btn">
+                    <i class="fas fa-plus-circle"></i> İlk yazını paylaş
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dropdown Menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const saturnBtn = document.getElementById('saturnMenuBtn');
+            const dropdown = document.querySelector('.galaktik-dropdown');
+            
+            if (saturnBtn && dropdown) {
+                saturnBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                    dropdown.classList.toggle('open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!dropdown.contains(e.target) && !saturnBtn.contains(e.target)) {
+                        saturnBtn.classList.remove('active');
+                        dropdown.classList.remove('open');
+                    }
+                });
+                
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        saturnBtn.classList.remove('active');
+                        dropdown.classList.remove('open');
+                    }
+                });
+            }
+
+            // Çıkış butonu
+            const cikisBtn = document.getElementById('menuLogoutBtn');
+            if (cikisBtn) {
+                cikisBtn.addEventListener('click', function() {
+                    if (confirm('Çıkış yapmak istediğinize emin misiniz?')) {
+                        window.location.href = 'dashboard.html';
+                    }
+                });
+            }
+
+            // Koordinatları güncelle
+            const koordinatEl = document.getElementById('menuKoordinat');
+            if (koordinatEl) {
+                setInterval(() => {
+                    const sayi = Math.floor(Math.random() * 100);
+                    koordinatEl.innerHTML = `Satürn • Halka Sektörü ${sayi}`;
+                }, 5000);
+            }
+
+            // Profil butonları
+            document.querySelectorAll('.action-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Bu özellik yakında eklenecek! (Demo modu)');
+                });
+            });
+
+            document.querySelector('.add-btn').addEventListener('click', function() {
+                alert('Yeni yazı oluşturma sayfası açılıyor... (Demo modu)');
+            });
+
+            document.querySelectorAll('.tab-item').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const tabName = this.textContent;
+                    if (tabName !== 'Yazılarım') {
+                        alert(`"${tabName}" bölümü henüz hazır değil! (Demo modu)`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
